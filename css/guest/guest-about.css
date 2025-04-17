@@ -1,0 +1,100 @@
+/* flex-box */
+
+/* header */
+
+.header {
+  color: white;
+  font-size: 3em;
+}
+
+.header .container {
+  padding: 0 30px;
+}
+
+.header .banner {
+  background-image: url("/images/guest/about-1.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  height: 400px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* story and mission */
+
+.mission .container,
+.story .container {
+  display: flex;
+  height: 400px;
+}
+
+.story-img img,
+.mission-img img {
+  height: 100%;
+  width: auto;
+  object-fit: cover;
+  border-radius: 50%;
+}
+
+/* story */
+
+.story {
+  background-color: #4fc3f7;
+}
+
+.story-text {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 100px;
+  gap: 10px;
+  text-align: justify;
+}
+
+/* mission */
+
+.mission-text {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 100px;
+  gap: 10px;
+  text-align: justify;
+}
+
+/* solution */
+
+.solution {
+  background-color: #4fc3f7;
+}
+
+.solution .container {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+
+  gap: 20px;
+}
+
+.solution-img {
+  display: flex;
+  gap: 40px;
+}
+
+.solution img {
+  height: 300px;
+  width: auto;
+  object-fit: cover;
+}
+
+.solution-text {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 20px 100px 20px 100px;
+  gap: 10px;
+  text-align: justify;
+}

@@ -1,0 +1,305 @@
+button {
+    padding: 10px;
+    width: 70px;
+    color: white;
+    font-family: inherit;
+    border-radius: 5px;
+    cursor: pointer;
+    border: 1px solid black;
+    background-color: #0288D1;
+    /* box-shadow: 0px 2px 6px 0px rgba(0, 0, 0, 0.5); */
+    font-size: 0.9rem;
+}
+
+/* search bar */
+
+.search-function .container {
+    /* background-color: #4FC3F7; */
+    margin: 200px auto;
+}
+
+.wrapper {
+    margin: auto;
+    max-width: 450px;
+}
+
+.wrapper .search-bar {
+    position: relative;
+    background-color: white;
+    width: 100%;
+    border-radius: 5px;
+}
+
+.search-bar input {
+    height: 55px;
+    width: 100%;
+    outline: none;
+    border: none;
+    border-radius: 5px;
+    padding: 0 60px 0 20px;
+    font-size: 16px;
+}
+
+.search-bar .icon {
+    position: absolute;
+    right: 0px;
+    top: 0px;
+    height: 55px;
+    width: 55px;
+    text-align: center;
+    line-height: 55px;
+    font-size: 20px;
+    color: #0288D1;
+    cursor: pointer;
+}
+
+.search-bar .drug-list {
+    padding: 0;
+    max-height: 280px;
+    overflow-y: auto;
+    opacity: 0;
+    pointer-events: none;
+}
+
+.search-bar.active .drug-list {
+    padding: 10px 8px;
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.drug-list li {
+    list-style: none;
+    padding: 8px 12px;
+    width: 100%;
+    cursor: default;
+    border-radius: 3px;
+    display: none;
+}
+
+.search-bar.active .drug-list li {
+    display: block;
+}
+
+.drug-list li:hover {
+    background-color: #EFEFEF;
+}
+
+/* modal */
+
+.modal-container {
+    background-color: rgba(0, 0, 0, 0.5);
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    width: 100vw;
+    opacity: 0;
+    pointer-events: none;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    transition: opacity 0.1s ease;
+}
+
+.modal-container.show {
+    pointer-events: auto;
+    opacity: 1;
+}
+
+.modal {
+    background-color: white;
+    border-radius: 25px;
+    padding: 30px;
+    width: 1100px;
+    height: 600px;
+    max-width: 100%;
+    text-align: justify;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.modal button {
+    align-self: flex-end;
+}
+
+/* medical insights */
+
+/* .description, .interactions, .dosage, .side-effects{
+    flex: 1 1 45%;
+    padding: 10px;
+    background-color: #B3E5FC;
+    border-radius: 20px;
+} */
+
+/* tabs */
+
+.tabs{
+    display: none;
+}
+
+.tabs.active{
+    display: block;
+}
+
+.tabs .container {
+    display: flex;
+    /* justify-content: center;border: 2px solid red; */
+
+    padding: 0px;
+}
+
+.tab-container {
+    width: 100%;
+    background-color: #4FC3F7;
+    padding: 10px 30px;
+    box-shadow: 0 2px 16px rgba(0, 0, 0, 0.1);
+    border-radius: 20px;
+}
+
+.tab-box {
+
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    /* border-bottom: 2px solid rgba(229, 229, 229); */
+    border-bottom: 2px solid black;
+    position: relative;
+}
+
+.tab-box .tab-btn {
+    font-size: 16px;
+    font-weight: 600;
+    /* color: #919191; */
+    background: none;
+    border: none;
+    padding: 18px;
+    cursor: pointer;
+    width: 100%;
+}
+
+.tab-box .tab-btn.active {
+    color: white;
+}
+
+.content-box {
+    padding: 20px;
+}
+
+.content-box .content {
+    display: none;
+    animation: moving 0.5s ease;
+    background-color: #B3E5FC;
+}
+
+.content-box .content.active {
+    display: block;
+    overflow-y: auto;
+    height: 280px;
+    padding: 20px;
+    border: 2px solid black;
+
+}
+
+@keyframes moving {
+    from {
+        transform: translateX(50px);
+        opacity: 0;
+    }
+
+    to {
+        transform: translateX(0px);
+        opacity: 1;
+    }
+}
+
+.content-box .content h2 {
+    margin-bottom: 10px;
+}
+
+.line {
+    position: absolute;
+    top: 58px;
+    left: 0px;
+    width: 196px;
+    height: 5px;
+    background-color: white;
+    border-radius: 10px;
+    transition: all .3s ease;
+}
+
+/* loading */
+
+.loader.active{
+    display: block;
+}
+
+.loader{
+    display: none;
+}
+
+.loader .container {
+    background-color: #4FC3F7;
+
+    border-radius: 20px;
+
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    height: 400px;
+}
+
+.loading {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+
+    width: 100%;
+
+
+
+}
+
+.progress-bar {
+    width: 612px;
+    height: 40px;
+    background-color: #0288D1;
+    border-radius: 50px;
+    padding: 6px;
+}
+
+.progress {
+    height: 28px;
+    background-color: #B3E5FC;
+    border-radius: 50px;
+}
+
+.text {
+    margin-bottom: 20px;
+    font-size: 32px;
+}
+
+.text-blink {
+    animation: blink .7s ease-in-out .1s infinite;
+}
+
+@keyframes blink {
+    0% {
+        opacity: 1;
+    }
+
+    50% {
+        opacity: .2;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}

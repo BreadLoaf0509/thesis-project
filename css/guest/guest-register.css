@@ -1,0 +1,81 @@
+button {
+    padding: 10px;
+    width: 200px;
+    color: white;
+    font-family: inherit;
+    border-radius: 5px;
+    cursor: pointer;
+    border: 1px solid black;
+    background-color: #0288D1;
+    /* box-shadow: 0px 2px 6px 0px rgba(0, 0, 0, 0.5); */
+    font-size: 0.9rem;
+}
+
+.links{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.links a{
+    color: black;
+    font-weight: bold;
+}
+
+.login .container{
+    display: flex;
+    justify-content: center;
+}
+
+
+body{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100vh;
+}
+
+.login-form{
+    display: flex;
+    background-color: #4FC3F7;
+    padding: 50px;
+    flex-direction: column;
+    width: 800px;
+    margin: 100px 0;
+
+}
+
+.login-form form{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.login-form form .links{
+    display: flex;
+    justify-content: space-between;
+}
+
+.input-field{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.input-group{
+    display: flex;
+    gap: 20px;
+}
+
+.input-field input{
+    padding: 10px;
+    width: 100%;
+    border-radius: 5px;
+    border: 1px solid #0288D1;
+    background-color: white;
+}
+
+label{
+    margin-top: 10px;
+    display: block;
+}

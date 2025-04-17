@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/css/style.css" />
+    <link rel="stylesheet" href="/css/user/user-search.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+    />
+    <title>MedExtract</title>
+  </head>
+
+  <body>
+    <nav class="user-navbar">
+      <div class="container">
+        <div class="logo">
+          <h1><a href="#">MedExtract</a></h1>
+        </div>
+
+        <ul class="nav">
+          <li><a href="#">Extract</a></li>
+          <li><a href="#">Search</a></li>
+          <li><a href="#">Settings</a></li>
+          <li><a href="#">Log Out</a></li>
+        </ul>
+      </div>
+    </nav>
+
+    <main class="search-function">
+      <div class="container">
+        <div class="wrapper">
+          <div class="search-bar">
+            <input type="text" placeholder="Search for drug..." />
+            <div class="drug-list"></div>
+            <div id="open" class="icon"><i class="fas fa-search"></i></div>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <div id="modal_container" class="modal-container">
+      <div class="modal">
+        <h1 id="modal-title">Modal</h1>
+        <!-- <div class="description">
+                    <h3>Medication Details</h3>
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Optio, error maxime animi consectetur
+                        quo, cupiditate sapiente unde magni iure nemo magnam deserunt minima velit voluptas nisi,
+                        inventore corporis doloremque dolores.</p>
+                </div>
+                <div class="interactions">
+                    <h3>Drug Interactions</h3>
+                    <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Sint quas pariatur nobis laudantium
+                        dolores, laborum perferendis optio explicabo cum aliquam consectetur provident exercitationem
+                        vero quis fugit molestias, ullam enim. Ducimus.</p>
+                </div>
+                <div class="dosage">
+                    <h3>Dosage Guidelines</h3>
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Magnam fuga velit consectetur vero,
+                        delectus dolorum vel totam dicta eveniet. Deserunt incidunt dolor, eius saepe distinctio odit
+                        nihil quos id dolorum?</p>
+                </div>
+                <div class="side-effects">
+                    <h3>Side Effects</h3>
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsam harum, repellendus nulla
+                        consectetur soluta rem voluptate impedit laudantium veritatis nihil consequatur sint molestiae
+                        libero maxime debitis eveniet corporis magni suscipit.</p>
+                </div> -->
+
+        <div class="loader active">
+          <div class="container">
+            <div class="loading">
+              <div class="text">Generating medical insight... Please wait.</div>
+              <!-- <div class="percent"> 100%</div> -->
+              <div class="progress-bar">
+                <div class="progress"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="tabs">
+          <div class="container">
+            <div class="tab-container">
+              <div class="tab-box">
+                <button class="tab-btn active">Medication Details</button>
+                <button class="tab-btn">Drug Interactions</button>
+                <button class="tab-btn">Dosage Guidelines</button>
+                <button class="tab-btn">Side Effects</button>
+                <button class="tab-btn">Drug Prices</button>
+                <div class="line"></div>
+              </div>
+              <div class="content-box">
+                <div class="content active">
+                  <p>
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                    Eius dolorum incidunt distinctio iste, et aut veritatis
+                    perferendis sed earum tempore ex dolor? Unde obcaecati
+                    quisquam optio vel excepturi suscipit velit. Lorem ipsum
+                    dolor sit amet consectetur adipisicing elit. Blanditiis
+                    dolorum ullam quidem incidunt vitae non explicabo quod illo,
+                    eaque nesciunt! Saepe voluptates iure architecto. Unde iure
+                    nam dolorem architecto quia? Lorem ipsum, dolor sit amet
+                    consectetur adipisicing elit. Repellendus, error fugit cum
+                    vero ad impedit excepturi numquam at velit maiores
+                    dignissimos. Nobis in sunt laudantium repellendus doloremque
+                    aliquam, exercitationem voluptatibus. Lorem ipsum dolor sit
+                    amet, consectetur adipisicing elit. Laudantium nihil
+                    repellendus odio, itaque sit rerum numquam provident
+                    similique, totam qui atque ullam ratione optio vel
+                    voluptatum accusamus commodi deleniti beatae? Lorem ipsum
+                    dolor sit amet consectetur adipisicing elit. Veritatis
+                    voluptates eum corporis repudiandae hic a placeat
+                    consequuntur ea nulla, sunt libero ratione debitis sint
+                    quisquam ullam modi adipisci animi dolorem. Lorem ipsum
+                    dolor sit amet, consectetur adipisicing elit. Ab libero
+                    omnis sunt tempore inventore facere culpa at et odit
+                    similique natus, unde numquam rerum pariatur mollitia vitae
+                    consequatur illum debitis? Lorem ipsum dolor sit amet,
+                    consectetur adipisicing elit. Magni dolorum hic quisquam
+                    esse. Esse hic autem debitis tenetur mollitia ipsam nam
+                    exercitationem molestiae, quaerat optio provident officia
+                    consequuntur eveniet sed?
+                  </p>
+                </div>
+
+                <div class="content">
+                  <p>
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                    Eius dolorum incidunt distinctio iste, et aut veritatis
+                    perferendis sed earum tempore ex dolor? Unde obcaecati
+                    quisquam optio vel excepturi suscipit velit. Lorem ipsum
+                    dolor sit amet consectetur adipisicing elit. Blanditiis
+                    dolorum ullam quidem incidunt vitae non explicabo quod illo,
+                    eaque nesciunt! Saepe voluptates iure architecto. Unde iure
+                    nam dolorem architecto quia? Lorem ipsum, dolor sit amet
+                    consectetur adipisicing elit. Repellendus, error fugit cum
+                    vero ad impedit excepturi numquam at velit maiores
+                    dignissimos. Nobis in sunt laudantium repellendus doloremque
+                    aliquam, exercitationem voluptatibus. Lorem ipsum dolor sit
+                    amet, consectetur adipisicing elit. Laudantium nihil
+                    repellendus odio, itaque sit rerum numquam provident
+                    similique, totam qui atque ullam ratione optio vel
+                    voluptatum accusamus commodi deleniti beatae? Lorem ipsum
+                    dolor sit amet consectetur adipisicing elit. Veritatis
+                    voluptates eum corporis repudiandae hic a placeat
+                    consequuntur ea nulla, sunt libero ratione debitis sint
+                    quisquam ullam modi adipisci animi dolorem. Lorem ipsum
+                    dolor sit amet, consectetur adipisicing elit. Ab libero
+                    omnis sunt tempore inventore facere culpa at et odit
+                    similique natus, unde numquam rerum pariatur mollitia vitae
+                    consequatur illum debitis? Lorem ipsum dolor sit amet,
+                    consectetur adipisicing elit. Magni dolorum hic quisquam
+                    esse. Esse hic autem debitis tenetur mollitia ipsam nam
+                    exercitationem molestiae, quaerat optio provident officia
+                    consequuntur eveniet sed?
+                  </p>
+                </div>
+
+                <div class="content">
+                  <p>
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                    Eius dolorum incidunt distinctio iste, et aut veritatis
+                    perferendis sed earum tempore ex dolor? Unde obcaecati
+                    quisquam optio vel excepturi suscipit velit. Lorem ipsum
+                    dolor sit amet consectetur adipisicing elit. Blanditiis
+                    dolorum ullam quidem incidunt vitae non explicabo quod illo,
+                    eaque nesciunt! Saepe voluptates iure architecto. Unde iure
+                    nam dolorem architecto quia? Lorem ipsum, dolor sit amet
+                    consectetur adipisicing elit. Repellendus, error fugit cum
+                    vero ad impedit excepturi numquam at velit maiores
+                    dignissimos. Nobis in sunt laudantium repellendus doloremque
+                    aliquam, exercitationem voluptatibus. Lorem ipsum dolor sit
+                    amet, consectetur adipisicing elit. Laudantium nihil
+                    repellendus odio, itaque sit rerum numquam provident
+                    similique, totam qui atque ullam ratione optio vel
+                    voluptatum accusamus commodi deleniti beatae? Lorem ipsum
+                    dolor sit amet consectetur adipisicing elit. Veritatis
+                    voluptates eum corporis repudiandae hic a placeat
+                    consequuntur ea nulla, sunt libero ratione debitis sint
+                    quisquam ullam modi adipisci animi dolorem. Lorem ipsum
+                    dolor sit amet, consectetur adipisicing elit. Ab libero
+                    omnis sunt tempore inventore facere culpa at et odit
+                    similique natus, unde numquam rerum pariatur mollitia vitae
+                    consequatur illum debitis? Lorem ipsum dolor sit amet,
+                    consectetur adipisicing elit. Magni dolorum hic quisquam
+                    esse. Esse hic autem debitis tenetur mollitia ipsam nam
+                    exercitationem molestiae, quaerat optio provident officia
+                    consequuntur eveniet sed?
+                  </p>
+                </div>
+
+                <div class="content">
+                  <p>
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                    Eius dolorum incidunt distinctio iste, et aut veritatis
+                    perferendis sed earum tempore ex dolor? Unde obcaecati
+                    quisquam optio vel excepturi suscipit velit. Lorem ipsum
+                    dolor sit amet consectetur adipisicing elit. Blanditiis
+                    dolorum ullam quidem incidunt vitae non explicabo quod illo,
+                    eaque nesciunt! Saepe voluptates iure architecto. Unde iure
+                    nam dolorem architecto quia? Lorem ipsum, dolor sit amet
+                    consectetur adipisicing elit. Repellendus, error fugit cum
+                    vero ad impedit excepturi numquam at velit maiores
+                    dignissimos. Nobis in sunt laudantium repellendus doloremque
+                    aliquam, exercitationem voluptatibus. Lorem ipsum dolor sit
+                    amet, consectetur adipisicing elit. Laudantium nihil
+                    repellendus odio, itaque sit rerum numquam provident
+                    similique, totam qui atque ullam ratione optio vel
+                    voluptatum accusamus commodi deleniti beatae? Lorem ipsum
+                    dolor sit amet consectetur adipisicing elit. Veritatis
+                    voluptates eum corporis repudiandae hic a placeat
+                    consequuntur ea nulla, sunt libero ratione debitis sint
+                    quisquam ullam modi adipisci animi dolorem. Lorem ipsum
+                    dolor sit amet, consectetur adipisicing elit. Ab libero
+                    omnis sunt tempore inventore facere culpa at et odit
+                    similique natus, unde numquam rerum pariatur mollitia vitae
+                    consequatur illum debitis? Lorem ipsum dolor sit amet,
+                    consectetur adipisicing elit. Magni dolorum hic quisquam
+                    esse. Esse hic autem debitis tenetur mollitia ipsam nam
+                    exercitationem molestiae, quaerat optio provident officia
+                    consequuntur eveniet sed?
+                  </p>
+                </div>
+
+                <div class="content">
+                  <p>
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                    Eius dolorum incidunt distinctio iste, et aut veritatis
+                    perferendis sed earum tempore ex dolor? Unde obcaecati
+                    quisquam optio vel excepturi suscipit velit. Lorem ipsum
+                    dolor sit amet consectetur adipisicing elit. Blanditiis
+                    dolorum ullam quidem incidunt vitae non explicabo quod illo,
+                    eaque nesciunt! Saepe voluptates iure architecto. Unde iure
+                    nam dolorem architecto quia? Lorem ipsum, dolor sit amet
+                    consectetur adipisicing elit. Repellendus, error fugit cum
+                    vero ad impedit excepturi numquam at velit maiores
+                    dignissimos. Nobis in sunt laudantium repellendus doloremque
+                    aliquam, exercitationem voluptatibus. Lorem ipsum dolor sit
+                    amet, consectetur adipisicing elit. Laudantium nihil
+                    repellendus odio, itaque sit rerum numquam provident
+                    similique, totam qui atque ullam ratione optio vel
+                    voluptatum accusamus commodi deleniti beatae? Lorem ipsum
+                    dolor sit amet consectetur adipisicing elit. Veritatis
+                    voluptates eum corporis repudiandae hic a placeat
+                    consequuntur ea nulla, sunt libero ratione debitis sint
+                    quisquam ullam modi adipisci animi dolorem. Lorem ipsum
+                    dolor sit amet, consectetur adipisicing elit. Ab libero
+                    omnis sunt tempore inventore facere culpa at et odit
+                    similique natus, unde numquam rerum pariatur mollitia vitae
+                    consequatur illum debitis? Lorem ipsum dolor sit amet,
+                    consectetur adipisicing elit. Magni dolorum hic quisquam
+                    esse. Esse hic autem debitis tenetur mollitia ipsam nam
+                    exercitationem molestiae, quaerat optio provident officia
+                    consequuntur eveniet sed?
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <button id="close">Close</button>
+      </div>
+    </div>
+
+    <footer class="footer">
+      <div class="container">
+        <div class="f-1">
+          <h2>MedExtract</h2>
+          <p>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Adipisci,
+            id aspernatur itaque cumque vitae odit sint eligendi nam libero
+            voluptate magni aperiam, veniam ullam tenetur quidem nostrum enim
+            eos a.
+          </p>
+        </div>
+
+        <div class="f-2">
+          <div>
+            <h2>Links</h2>
+            <ul class="nav">
+              <li><a href="#">Extract</a></li>
+              <li><a href="#">Search</a></li>
+              <li><a href="#">Settings</a></li>
+              <li><a href="#">Log Out</a></li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="f-3">
+          <h2>Contacts</h2>
+          <div class="contacts">
+            <div>
+              <img src="/Flaticons/index/location.png" /> &nbsp;
+              <p>
+                University of The East Caloocan, 105 Samson Rd, Caloocan, Metro
+                Manila
+              </p>
+            </div>
+            <div>
+              <img src="/Flaticons/index/email.png" /> &nbsp;
+              <p>nogot.markvincent@ue.edu.ph</p>
+            </div>
+            <div>
+              <img src="/Flaticons/index/call.png" /> &nbsp;
+              <p>09991624156</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <script src="../../js/user/user-search.js"></script>
+    <script src="../../js/user/auto-complete.js"></script>
+    <script>
+      // tabs
+
+      const tabs = document.querySelectorAll(".tab-btn");
+      const contents = document.querySelectorAll(".content");
+
+      tabs.forEach((tab, index) => {
+        tab.addEventListener("click", (e) => {
+          tabs.forEach((tab) => {
+            tab.classList.remove("active");
+          });
+          tab.classList.add("active");
+          var line = document.querySelector(".line");
+          line.style.width = e.target.offsetWidth + "px";
+          line.style.left = e.target.offsetLeft + "px";
+
+          contents.forEach((content) => {
+            content.classList.remove("active");
+          });
+          contents[index].classList.add("active");
+        });
+      });
+
+    </script>
+  </body>
+</html>

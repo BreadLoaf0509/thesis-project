@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="/css/style.css" />
+  <link rel="stylesheet" href="/css/user/user-extract.css" />
+  <title>MedExtract</title>
+</head>
+
+<body>
+  <nav class="user-navbar">
+    <div class="container">
+      <div class="logo">
+        <h1><a href="#">MedExtract</a></h1>
+      </div>
+
+      <ul class="nav">
+        <li><a href="#">Extract</a></li>
+        <li><a href="#">Search</a></li>
+        <li><a href="#">Settings</a></li>
+        <li><a href="#">Log Out</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <main class="app">
+    <div class="header">
+      <h2>Upload Images</h2>
+      <div class="server-message"></div>
+    </div>
+
+    <div class="input-div">
+      <p>Drag and Drop Images or <span>Browse</span></p>
+      <input type="file" class="file" multiple="multiple" accept="image/png, image/jpeg, image/jpg" />
+    </div>
+
+    <form id="saved-form">
+      <div class="header">
+        <h3>Saved in Server</h3>
+        <button type="submit">Delete</button>
+      </div>
+
+      <div class="saved-div"></div>
+    </form>
+
+    <form id="queued-form">
+      <div class="header">
+        <h3>Images Preview</h3>
+        <button id="open" type="submit">Upload</button>
+      </div>
+
+      <div class="queued-div"></div>
+    </form>
+  </main>
+
+  <div id="modal_container" class="modal-container">
+    <div class="modal">
+      <h1 id="modal-title">Scanned Results: </h1>
+      <div class="medical-insights">
+        <!-- <div class="description">
+          <h3>Medication Details</h3>
+          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Optio, error maxime animi consectetur quo,
+            cupiditate sapiente unde magni iure nemo magnam deserunt minima velit voluptas nisi, inventore corporis
+            doloremque dolores.</p>
+        </div>
+        <div class="interactions">
+          <h3>Drug Interactions</h3>
+          <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Sint quas pariatur nobis laudantium dolores,
+            laborum perferendis optio explicabo cum aliquam consectetur provident exercitationem vero quis fugit
+            molestias, ullam enim. Ducimus.</p>
+        </div>
+        <div class="dosage">
+          <h3>Dosage Guidelines</h3>
+          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Magnam fuga velit consectetur vero, delectus
+            dolorum vel totam dicta eveniet. Deserunt incidunt dolor, eius saepe distinctio odit nihil quos id dolorum?
+          </p>
+        </div>
+        <div class="side-effects">
+          <h3>Side Effects</h3>
+          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsam harum, repellendus nulla consectetur soluta
+            rem voluptate impedit laudantium veritatis nihil consequatur sint molestiae libero maxime debitis eveniet
+            corporis magni suscipit.</p>
+        </div> -->
+
+        <!-- <div class="tabs">
+          <div class="container">
+            <div class="tab-container">
+              <div class="tab-box">
+                <button class="tab-btn active">Medication Details</button>
+                <button class="tab-btn">Drug Interactions</button>
+                <button class="tab-btn">Dosage Guidelines</button>
+                <button class="tab-btn">Side Effects</button>
+                <div class="line"></div>
+              </div>
+              <div class="content-box">
+                <div class="content active">
+                  <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Eligendi odio a
+                    voluptate natus sint, voluptatem dolorum ab ipsam, libero pariatur dolor? Dicta
+                    ipsum, corporis dolorem architecto deserunt perferendis provident eum.</p>
+                  <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Culpa est voluptatum
+                    deleniti ipsa quam incidunt labore, eos harum quibusdam fugit numquam totam
+                    eveniet eius sapiente doloremque sint dicta quos nobis.</p>
+                </div>
+
+                <div class="content">
+                  <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorem tenetur odio
+                    expedita eligendi dicta cumque, dolor ipsum aperiam labore exercitationem
+                    necessitatibus, porro praesentium cum. Consequatur reiciendis inventore vel fuga
+                    iste.</p>
+                  <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Natus exercitationem
+                    repellendus fuga labore vero veritatis commodi quisquam. Quis, consequuntur.
+                    Officiis et iure molestias esse aspernatur culpa magnam libero? Sit, blanditiis!
+                  </p>
+                </div>
+
+                <div class="content">
+                  <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Molestias sit facere
+                    minus similique dolor. Nobis sint, amet consequuntur perspiciatis dignissimos
+                    quo quam aut recusandae consectetur aliquid quasi commodi esse magnam!</p>
+                  <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Temporibus dolorem nobis
+                    rerum laboriosam amet velit iure ipsum, ea totam consequuntur? At sequi quod
+                    incidunt voluptatem cumque, veniam nisi totam molestias!</p>
+                </div>
+
+                <div class="content">
+                  <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Necessitatibus, sapiente
+                    rem? Maxime corporis quisquam amet ab quaerat aut? Deserunt fugiat eos mollitia
+                    perferendis iure corrupti quaerat ipsa non ex commodi.</p>
+                  <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. A doloremque, quos
+                    nulla modi exercitationem maxime veniam amet quis ipsum asperiores reprehenderit
+                    hic perferendis voluptatum omnis eveniet pariatur possimus rem eum.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div> -->
+      </div>
+      <button id="close">Close</button>
+    </div>
+  </div>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="f-1">
+        <h2>MedExtract</h2>
+        <p>
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Adipisci,
+          id aspernatur itaque cumque vitae odit sint eligendi nam libero
+          voluptate magni aperiam, veniam ullam tenetur quidem nostrum enim
+          eos a.
+        </p>
+      </div>
+
+      <div class="f-2">
+        <div>
+          <h2>Links</h2>
+          <ul class="nav">
+            <li><a href="#">Extract</a></li>
+            <li><a href="#">Search</a></li>
+            <li><a href="#">Settings</a></li>
+            <li><a href="#">Log Out</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="f-3">
+        <h2>Contacts</h2>
+        <div class="contacts">
+          <div>
+            <img src="/Flaticons/index/location.png" /> &nbsp;
+            <p>
+              University of The East Caloocan, 105 Samson Rd, Caloocan, Metro
+              Manila
+            </p>
+          </div>
+          <div>
+            <img src="/Flaticons/index/email.png" /> &nbsp;
+            <p>nogot.markvincent@ue.edu.ph</p>
+          </div>
+          <div>
+            <img src="/Flaticons/index/call.png" /> &nbsp;
+            <p>09991624156</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    let queuedImagesArray = [];
+    savedForm = document.querySelector("#saved-form");
+    queuedForm = document.querySelector("#queued-form");
+    savedDiv = document.querySelector(".saved-div");
+    queuedDiv = document.querySelector(".queued-div");
+    inputDiv = document.querySelector(".input-div");
+    input = document.querySelector(".input-div input");
+    serverMessage = document.querySelector(".server-message");
+    deleteImages = [];
+
+    // SAVED IN SERVER
+
+    // QUEUED IN FRONTEND IMAGES
+
+    input.addEventListener("change", () => {
+      const files = input.files;
+      for (let i = 0; i < files.length; i++) {
+        queuedImagesArray.push(files[i]);
+      }
+      queuedForm.reset();
+      displayQueuedImages();
+    });
+
+    inputDiv.addEventListener("drop", (e) => {
+      e.preventDefault();
+      const files = e.dataTransfer.files;
+      for (let i = 0; i < files.length; i++) {
+        if (!files[i].type.match("image")) continue;
+
+        if (queuedImagesArray.every(image => image.name !== files[i].name))
+          queuedImagesArray.push(files[i]);
+      }
+      displayQueuedImages();
+    });
+
+    function displayQueuedImages() {
+      let images = "";
+      queuedImagesArray.forEach((image, index) => {
+        images += `<div class="image">
+                   <img src="${URL.createObjectURL(image)}" alt="image">
+                   <span onclick="deletedQueueImage(${index})">&times;</span>
+                   </div>`
+      })
+      queuedDiv.innerHTML = images;
+    }
+
+    function deletedQueueImage(index) {
+      queuedImagesArray.splice(index, 1);
+      displayQueuedImages();
+    }
+
+    queuedForm.addEventListener("submit", (e) => {
+      e.preventDefault();
+      sendQueuedImagesToServer();
+    })
+
+    function sendQueuedImagesToServer(){
+      const formData = new FormData(queuedForm);
+
+      queuedImagesArray.forEach((image, index) => {
+        formData.append(`file[${index}]`, image)
+      })
+
+      fetch("upload", {method: "POST", body : formData})
+
+      .then(response => {
+        if(response.status !== 200) throw Error(response.statusText)
+        location.reload()
+      })
+
+      .catch(error => {
+        serverMessage.innerHTML = error
+        serverMessage.style.cssText = "background-color: #F8D7DA; color: #B71C1C;"
+      });
+    }
+
+    // modal // 
+
+    // const open = document.getElementById("open");
+    // const modal_container = document.getElementById("modal_container");
+    // const close = document.getElementById("close");
+    // const modalTitle = document.querySelector("#modal-title");
+
+    // open.addEventListener('click', () => {
+    //   // modalTitle.textContent = "You searched for: " + inputBox.value;
+    //   modal_container.classList.add('show');
+    // });
+
+    // close.addEventListener('click', () => {
+    //   modal_container.classList.remove('show');
+    // });
+
+    // // tabs
+
+    // const tabs = document.querySelectorAll('.tab-btn');
+    // const contents = document.querySelectorAll('.content');
+
+    // tabs.forEach((tab, index) => {
+    //   tab.addEventListener('click', (e) => {
+    //     tabs.forEach(tab => { tab.classList.remove('active') });
+    //     tab.classList.add('active');
+    //     var line = document.querySelector('.line');
+    //     line.style.width = e.target.offsetWidth + "px";
+    //     line.style.left = e.target.offsetLeft + "px";
+
+    //     contents.forEach(content => { content.classList.remove('active') });
+    //     contents[index].classList.add('active');
+    //   })
+    // })
+
+  </script>
+</body>
+
+</html>

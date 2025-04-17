@@ -1,0 +1,166 @@
+button {
+    padding: 10px;
+    width: 150px;
+    color: white;
+    /* font-family: inherit; */
+    border-radius: 5px;
+    cursor: pointer;
+    border: 1px solid black;
+    background-color: #0288D1;
+    /* box-shadow: 0px 2px 6px 0px rgba(0, 0, 0, 0.5); */
+    font-size: 0.9rem;
+
+    align-self: flex-end;
+}
+
+
+/* tabs */
+
+.tabs .container{
+    display: flex;
+    justify-content: center;
+    
+}
+
+.tab-container{
+    width: 100%;
+    background-color: #4FC3F7;
+    padding: 30px;
+    box-shadow: 0 2px 16px rgba(0, 0, 0, 0.1);
+    border-radius: 20px;
+}
+
+.tab-box{
+    
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    /* border-bottom: 2px solid rgba(229, 229, 229); */
+    border-bottom: 2px solid black;
+    position: relative;
+}
+
+.tab-box .tab-btn{
+    font-size: 18px;
+    font-weight: 600;
+    /* color: #919191; */
+    background: none;
+    border: none;
+    padding: 18px;
+    cursor: pointer;
+    width: 100%;
+}
+
+.tab-box .tab-btn.active{
+    color: white;
+}
+
+.content-box{
+    padding: 20px;
+}
+
+.content-box .content{
+    display: none;
+    animation: moving 0.5s ease;
+}
+
+.content-box .content.active{
+    display: block;
+}
+
+@keyframes moving{
+    from{transform: translateX(50px); opacity: 0;}
+    to{transform: translateX(0px); opacity: 1;}
+}
+
+.content-box .content h2{
+    margin-bottom: 10px;
+}
+
+.line{
+    position: absolute;
+    top: 62px;
+    left: 45px;
+    width: 189px;
+    height: 5px;
+    background-color: white;
+    border-radius: 10px;
+    transition: all .3s ease;
+}
+
+/* forms */
+
+/* information */
+
+.content .information{
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.content .information form{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    width: 80%;
+}
+
+.content .information form label{
+    width: 100px;
+}
+
+.content .information form input{
+    width: 100%;
+    padding: 10px;
+    border-radius: 10px;
+}
+
+.information .input-group{
+    width: 100%;
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+
+/* security */
+
+.content .security{
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.content .security form{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    width: 80%;
+}
+
+.content .security form label{
+    width: 150px;
+}
+
+.content .security form input{
+    width: 100%;
+    padding: 10px;
+    border-radius: 10px;
+}
+
+.security .input-group{
+    width: 100%;
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+
+/* history */
+
+.history{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 70px;
+}
+
