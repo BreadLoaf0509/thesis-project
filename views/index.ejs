@@ -39,7 +39,7 @@
 
     <form id="saved-form">
       <div class="header">
-        <h3>Saved in Server</h3>
+        <h3>Saved in Cloud Storage</h3>
         <button type="submit">Delete</button>
       </div>
 
@@ -117,13 +117,15 @@
 
     // SAVED IN SERVER IMAGES
 
-    if(savedImages) displayedSavedImages() // new
+    if(savedImages) {
+      displayedSavedImages()
+    }
 
     function displayedSavedImages() { // new
       let images = "";
       savedImages.forEach((image, index) => {
         images += `<div class="image">
-                   <img src="http://localhost:3000/uploads/${image}" alt="image">
+                   <img src="http://localhost:3000/${image.image_key}" alt="image">
                    <span onclick="deleteSavedImage(${index})">&times;</span>
                    </div>`
       })
@@ -131,7 +133,7 @@
     }
 
     function deleteSavedImage(index){ // new 
-      deleteImages.push(savedImages[index]);
+      deleteImages.push(savedImages[index].image_key);
       savedImages.splice(index, 1);
       displayedSavedImages();
     }
