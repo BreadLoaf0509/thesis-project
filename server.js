@@ -58,11 +58,33 @@ app.set("view engine", "ejs");
 
 app.use(express.static("public"));
 
+// index
+
 app.get("/", (req, res) => {
+    res.render("index");
+});
+
+// guest
+
+app.get("/guest-login", (req, res) => {
+    res.render("guest/guest-login");
+});
+
+app.get("/guest-register", (req, res) => {
+    res.render("guest/guest-register");
+});
+
+// user
+
+app.get("/user-search", (req, res) => {
+    res.render("user/user-search");
+});
+
+app.get("/user-extract", (req, res) => {
     dbConnection.query("SELECT * FROM images WHERE user_id = ?", [user_id], (err, result) => {
-        if(!err) res.render("index", { images: result });
-        else throw new Error(err)
-    })
+        if (!err) res.render("user/user-extract", { images: result });
+        else throw new Error(err);
+    });
 });
 
 app.post("/upload", (req, res) => {
@@ -87,9 +109,6 @@ app.put("/delete", (req, res) => {
         res.statusMessage = "Please select an image to delete!";
         res.status(400).end();
     } else {
-        // deleteImages.forEach((image) => {
-        //     unlinkFile(`./public/uploads/` + image);
-        // });
         deleteImagesFromS3(deleteImages);
         deleteImagesFromDB(deleteImages);
         res.statusMessage = "Image deleted successfully!";
@@ -131,10 +150,3 @@ function deleteImagesFromDB(images){
     }
 }
 
-// changes
-
-app.get("/guest-home", (req, res) => {
-    res.render("guest/guest-home"); // Render the guest-home.ejs file
-});
-
-app.use(express.static("views"));

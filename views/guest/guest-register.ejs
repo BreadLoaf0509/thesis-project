@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/css/style.css" />
+    <link rel="stylesheet" href="/css/guest/guest-register.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
+    <title>MedExtract</title>
+</head>
+
+<body>
+    <nav class="guest-navbar">
+        <div class="container">
+            <div class="logo">
+                <h1><a href="#">MedExtract</a></h1>
+            </div>
+
+            <ul class="nav">
+                <li><a href="#">Home</a></li>
+                <li><a href="#">About</a></li>
+                <li><a href="#">Login</a></li>
+                <li><a href="#">Register</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <section class="login">
+        <div class="container">
+            <form id="form" action="/">
+                <h1>Registration</h1>
+                <div class="input-control">
+                    <label for="username">Username</label>
+                    <input id="username" name="username" type="text" />
+                    <div class="error"></div>
+                </div>
+                <div class="input-control">
+                    <label for="email">Email</label>
+                    <input id="email" name="email" type="text" />
+                    <div class="error"></div>
+                </div>
+                <div class="input-control">
+                    <label for="password1">Password</label>
+                    <input id="password1" name="password1" type="password" />
+                    <div class="error"></div>
+                    <div class="password">
+                        <label for="show-password1">Show Password</label>
+                        <input type="checkbox" id="show-password1" class="show-password" />
+                    </div>
+                </div>
+                <div class="input-control">
+                    <label for="password2">Confirm Password</label>
+                    <input id="password2" name="password2" type="password" />
+                    <div class="error"></div>
+                    <div class="password">
+                        <label for="show-password2">Show Password</label>
+                        <input type="checkbox" id="show-password2" class="show-password" />
+                    </div>
+                </div>
+                <button type="submit">Sign Up</button>
+            </form>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="f-1">
+                <h2>MedExtract</h2>
+                <p>
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Adipisci,
+                    id aspernatur itaque cumque vitae odit sint eligendi nam libero
+                    voluptate magni aperiam, veniam ullam tenetur quidem nostrum enim
+                    eos a.
+                </p>
+            </div>
+
+            <div class="f-2">
+                <div>
+                    <h2>Links</h2>
+                    <ul class="nav">
+                        <li><a href="#">Home</a></li>
+                        <li><a href="#">About</a></li>
+                        <li><a href="#">Login</a></li>
+                        <li><a href="#">Register</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="f-3">
+                <h2>Contacts</h2>
+                <div class="contacts">
+                    <div>
+                        <img src="/Flaticons/index/location.png" /> &nbsp;
+                        <p>
+                            University of The East Caloocan, 105 Samson Rd, Caloocan, Metro
+                            Manila
+                        </p>
+                    </div>
+                    <div>
+                        <img src="/Flaticons/index/email.png" /> &nbsp;
+                        <p>nogot.markvincent@ue.edu.ph</p>
+                    </div>
+                    <div>
+                        <img src="/Flaticons/index/call.png" /> &nbsp;
+                        <p>09991624156</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        const form = document.getElementById("form");
+        const username = document.getElementById("username");
+        const email = document.getElementById("email");
+        const password1 = document.getElementById("password1");
+        const password2 = document.getElementById("password2");
+
+        const toggle1 = document.getElementById("show-password1");
+        const toggle2 = document.getElementById("show-password2");
+
+        toggle1.addEventListener("click", () => {
+            if (toggle1.checked) {
+                password1.setAttribute("type", "text");
+            } else {
+                password1.setAttribute("type", "password");
+            }
+        });
+
+        toggle2.addEventListener("click", () => {
+            if (toggle2.checked) {
+                password2.setAttribute("type", "text");
+            } else {
+                password2.setAttribute("type", "password");
+            }
+        });
+
+        form.addEventListener("submit", (e) => {
+            e.preventDefault();
+
+            validateInputs();
+        });
+
+        const setError = (element, message) => {
+            const inputControl = element.parentElement;
+            const errorDisplay = inputControl.querySelector(".error");
+
+            errorDisplay.innerText = message;
+            inputControl.classList.add("error");
+            inputControl.classList.remove("success");
+        };
+
+        const setSuccess = (element) => {
+            const inputControl = element.parentElement;
+            const errorDisplay = inputControl.querySelector(".error");
+
+            errorDisplay.innerText = "";
+            inputControl.classList.add("success");
+            inputControl.classList.remove("error");
+        };
+
+        const isValidEmail = (email) => {
+            const re =
+                /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+            return re.test(String(email).toLowerCase());
+        };
+
+        const validateInputs = () => {
+            const usernameValue = username.value.trim();
+            const emailValue = email.value.trim();
+            const password1Value = password1.value.trim();
+            const password2Value = password2.value.trim();
+
+            if (usernameValue === "") {
+                setError(username, "Username is required");
+            } else {
+                setSuccess(username);
+            }
+
+            if (emailValue === "") {
+                setError(email, "Email is required");
+            } else if (!isValidEmail(emailValue)) {
+                setError(email, "Provide a valid email address");
+            } else {
+                setSuccess(email);
+            }
+
+            if (password1Value === "") {
+                setError(password1, "Password is required");
+            } else if (password1Value.length < 8) {
+                setError(password1, "Password must be at least 8 character.");
+            } else {
+                setSuccess(password1);
+            }
+
+            if (password2Value === "") {
+                setError(password2, "Please confirm your password");
+            } else if (password2Value !== password1Value) {
+                setError(password2, "Passwords doesn't match");
+            } else {
+                setSuccess(password2);
+            }
+        };
+    </script>
+</body>
+
+</html>
