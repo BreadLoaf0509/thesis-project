@@ -89,7 +89,7 @@ app.get("/user-settings", (req, res) => {
 });
 
 app.get("/user-extract", (req, res) => {
-    dbConnection.query("SELECT * FROM images WHERE user_id = ?", [user_id], (err, result) => {
+    dbConnection.query("SELECT * FROM user_tbl WHERE user_id = ?", [user_id], (err, result) => {
         if (!err) res.render("user/user-extract", { images: result });
         else throw new Error(err);
     });
@@ -131,7 +131,7 @@ app.get("/:image_key", (req, res) => {
 
 function saveImagesInDB(images) {
     for (let i = 0; i < images.length; i++) {
-        dbConnection.query("INSERT INTO images (user_id, image_key) VALUES (?, ?)",
+        dbConnection.query("INSERT INTO user_tbl (user_id, image_key) VALUES (?, ?)",
             [user_id, images[i].key], (err, result) => {
                 if (err) throw new Error(err);
             })
@@ -151,7 +151,7 @@ function deleteImagesFromS3(images) {
 
 function deleteImagesFromDB(images) {
     for (let i = 0; i < images.length; i++) {
-        dbConnection.query("DELETE FROM images WHERE user_id = ? AND image_key = ?",
+        dbConnection.query("DELETE FROM user_tbl WHERE user_id = ? AND image_key = ?",
             [user_id, images[i]], (err, result) => {
                 if (err) throw new Error(err);
             })
