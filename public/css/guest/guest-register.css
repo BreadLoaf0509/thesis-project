@@ -17,7 +17,7 @@
     text-align: center;
 }
 
-#form button {
+button {
     padding: 10px;
     margin-top: 10px;
     width: 100%;
@@ -67,4 +67,51 @@
 
 .password .show-password {
     width: 13px;
+}
+
+/* modal */
+
+.modal-container {
+    background-color: rgba(0, 0, 0, 0.5);
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    width: 100vw;
+    opacity: 0;
+    pointer-events: none;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    transition: opacity 0.1s ease;
+}
+
+.modal-container.show {
+    pointer-events: auto;
+    opacity: 1;
+}
+
+.modal {
+    background-color: white;
+    border-radius: 25px;
+    padding: 30px;
+    width: 500px;
+    height: 200px;
+    max-width: 100%;
+    text-align: center;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+
+.modal button {
+    align-self: flex-end;
+}
+
+#modal-title{
+    font-size: 28px;
+    align-self: center;
 }

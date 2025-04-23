@@ -5,6 +5,8 @@ var user_id = 1; // This is a placeholder. You can replace it with the actual us
 const express = require("express");
 const multer = require("multer");
 const path = require("path");
+const bcrypt = require("bcrypt");
+const bodyParser = require("body-parser");
 
 // const fs = require('fs');
 // const util = require('util');
@@ -35,6 +37,8 @@ const upload = multer({
     },
 }).any();
 
+const formUpload = multer();
+
 function checkFileType(file, cb) {
     const fileTypes = /jpeg|png|jpg/;
     const extname = fileTypes.test(path.extname(file.originalname).toLowerCase());
@@ -52,7 +56,7 @@ const port = 3000;
 const app = express();
 
 app.use(express.json());
-app.use(express.urlencoded({ extended: false }));
+app.use(express.urlencoded({ extended: true }));
 
 app.set("view engine", "ejs");
 
@@ -78,6 +82,10 @@ app.get("/guest-register", (req, res) => {
 
 app.get("/user-search", (req, res) => {
     res.render("user/user-search");
+});
+
+app.get("/user-settings", (req, res) => {
+    res.render("user/user-settings");
 });
 
 app.get("/user-extract", (req, res) => {
@@ -135,18 +143,74 @@ app.listen(port, () => {
     console.log(`Server is running on port ${port}`);
 });
 
-function deleteImagesFromS3(images){
-    for(let i = 0; i < images.length; i++){
+function deleteImagesFromS3(images) {
+    for (let i = 0; i < images.length; i++) {
         deleteImage(images[i]);
     }
 }
 
-function deleteImagesFromDB(images){
-    for(let i = 0; i < images.length; i++){
+function deleteImagesFromDB(images) {
+    for (let i = 0; i < images.length; i++) {
         dbConnection.query("DELETE FROM images WHERE user_id = ? AND image_key = ?",
-        [user_id, images[i]], (err, result) => {
-            if (err) throw new Error(err);
-        } )
+            [user_id, images[i]], (err, result) => {
+                if (err) throw new Error(err);
+            })
     }
 }
 
+// new
+
+app.post("/register", formUpload.none(), (req, res) => {
+
+    // if (!req.body.username) {
+    //     return res.status(400).send("Username is required.");
+    // }
+    // if (!req.body.email) {
+    //     return res.status(400).send("Email is required.");
+    // }
+    // if (!req.body.password1) {
+    //     return res.status(400).send("Password is required.");
+    // }
+
+    saveUserInDB(req.body, res);
+});
+
+function saveUserInDB(userData, res) {
+    const { username, email, password1 } = userData;
+
+    // Check if the email already exists
+    const checkEmailQuery = "SELECT * FROM user_tbl WHERE email = ?";
+    dbConnection.query(checkEmailQuery, [email], (err, results) => {
+        if (err) {
+            console.error(err);
+            res.status(500).send("An error occurred while checking the email.");
+            return; // Stop further execution
+        }
+
+        if (results.length > 0) {
+            // Email already exists
+            res.status(400).send("Email already exists.");
+            return; // Stop further execution
+        }
+
+        // If email does not exist, hash the password and insert the user
+        bcrypt.hash(password1, 10, (err, hashedPassword) => {
+            if (err) {
+                console.error(err);
+                res.status(500).send("An error occurred while hashing the password.");
+                return; // Stop further execution
+            }
+
+            const insertQuery = "INSERT INTO user_tbl (username, email, password) VALUES (?, ?, ?)";
+            dbConnection.query(insertQuery, [username, email, hashedPassword], (err, result) => {
+                if (err) {
+                    console.error(err);
+                    res.status(500).send("An error occurred while inserting the user.");
+                    return; // Stop further execution
+                }
+
+                res.status(200).send("User registered successfully!");
+            });
+        });
+    });
+}

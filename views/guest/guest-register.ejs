@@ -18,17 +18,17 @@
             </div>
 
             <ul class="nav">
-                <li><a href="#">Home</a></li>
-                <li><a href="#">About</a></li>
-                <li><a href="#">Login</a></li>
-                <li><a href="#">Register</a></li>
-            </ul>
+                <li><a href="/">Home</a></li>
+                <li><a href="/html/guest/guest-about.html">About</a></li>
+                <li><a href="/guest-login">Login</a></li>
+                <li><a href="/guest-register">Register</a></li>
+              </ul>
         </div>
     </nav>
 
     <section class="login">
         <div class="container">
-            <form id="form" action="/">
+            <form id="form" action="/register" method="POST">
                 <h1>Registration</h1>
                 <div class="input-control">
                     <label for="username">Username</label>
@@ -58,10 +58,20 @@
                         <input type="checkbox" id="show-password2" class="show-password" />
                     </div>
                 </div>
-                <button type="submit">Sign Up</button>
+                <button id="open" type="submit">Sign Up</button>
             </form>
         </div>
     </section>
+
+    <!-- modal -->
+
+    <div id="modal_container" class="modal-container">
+        <div class="modal">
+            <h1 id="modal-title">User Registered Succesfully!</h1>
+
+            <button id="close">Close</button>
+        </div>
+    </div>
 
     <footer class="footer">
         <div class="container">
@@ -79,11 +89,11 @@
                 <div>
                     <h2>Links</h2>
                     <ul class="nav">
-                        <li><a href="#">Home</a></li>
-                        <li><a href="#">About</a></li>
-                        <li><a href="#">Login</a></li>
-                        <li><a href="#">Register</a></li>
-                    </ul>
+                        <li><a href="/">Home</a></li>
+                        <li><a href="/html/guest/guest-about.html">About</a></li>
+                        <li><a href="/guest-login">Login</a></li>
+                        <li><a href="/guest-register">Register</a></li>
+                      </ul>
                 </div>
             </div>
 
@@ -137,10 +147,45 @@
         });
 
         form.addEventListener("submit", (e) => {
-            e.preventDefault();
-
+            e.preventDefault(); // Prevent the default form submission
             validateInputs();
+
+            // Check if all inputs are valid
+            const errors = document.querySelectorAll(".error");
+            const hasErrors = Array.from(errors).some((error) => error.innerText !== "");
+
+            if (!hasErrors) {
+                sendUserDataToServer(); // Submit the form if there are no errors
+            }
+
+
         });
+
+        function sendUserDataToServer() {
+            const formData = new FormData(form);
+
+            fetch("/register", {
+                method: "POST",
+                body: formData,
+            })
+                .then(async (response) => {
+                    const message = await response.text(); // Extract the response text
+
+                    if (!response.ok) {
+                        // If the response status is not 200, throw an error with the message
+                        throw new Error(message);
+                    }
+
+                    // Handle success
+                    modalTitle.textContent = "User Registered Successfully!";
+                    modal_container.classList.add("show");
+                })
+                .catch((error) => {
+                    // Handle errors by displaying the error message in the modal
+                    modalTitle.textContent = error.message; // Set the error message in the modal
+                    modal_container.classList.add("show"); // Show the modal
+                });
+        }
 
         const setError = (element, message) => {
             const inputControl = element.parentElement;
@@ -202,6 +247,19 @@
                 setSuccess(password2);
             }
         };
+
+        // modal
+
+        const open = document.getElementById("open");
+        const modal_container = document.getElementById("modal_container");
+        const modalTitle = document.querySelector("#modal-title");
+        const close = document.getElementById("close");
+
+        close.addEventListener('click', () => {
+            location.reload();
+            // modal_container.classList.remove('show');
+        });
+
     </script>
 </body>
 
