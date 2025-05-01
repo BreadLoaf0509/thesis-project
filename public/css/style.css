@@ -158,3 +158,40 @@ h6 {
   width: 24px;
   height: 24px;
 }
+
+/* server message */
+
+.message-container .container{
+  padding: 10px 30px;
+  display: none;
+}
+
+.server-message {
+  width: 100%;
+  padding: 8px;
+  border-radius: 5px;
+  border: 2px solid black;
+  display: none;
+}
+
+.server-message-modal {
+  width: 80%;
+  padding: 8px;
+  border-radius: 5px;
+  border: 2px solid black;
+  display: none;
+  align-self: center;
+}
+
+.message-container .container.active{
+  padding: 10px 30px;
+  display: block;
+}
+
+.server-message.active {
+  display: block;
+}
+
+.server-message-modal.active {
+  display: block;
+}

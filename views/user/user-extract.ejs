@@ -16,45 +16,166 @@
         <h1><a href="#">MedExtract</a></h1>
       </div>
 
+      <div class="current-user">
+        <h5 class="username-holder">Hey there! <%= username %>
+        </h5>
+      </div>
+
       <ul class="nav">
         <li><a href="/user-extract">Extract</a></li>
         <li><a href="/user-search">Search</a></li>
         <li><a href="/user-settings">Settings</a></li>
-        <li><a href="/">Log Out</a></li>
+        <li><a href="/logout" onclick="confirmLogout()">Log Out</a></li>
       </ul>
     </div>
   </nav>
 
+  <div class="message-container">
+    <div class="container">
+      <div class="server-message">SERVER MESSAGE WILL SHOW HERE</div>
+    </div>
+  </div>
+
+
   <main class="app">
 
+
     <div class="header">
-      <h2>Upload Images</h2>
-      <div class="server-message"></div>
+      <h2>Upload Image Here To Scan</h2>
     </div>
 
     <div class="input-div">
       <p>Drag and Drop Images or <span class="browse">Browse</span></p>
-      <input type="file" class="file" multiple="multiple" accept="image/png, image/jpeg, image/jpg" />
+      <input type="file" class="file" accept="image/png, image/jpeg, image/jpg" />
     </div>
 
-    <form id="saved-form">
-      <div class="header">
-        <h3>Saved in Cloud Storage</h3>
-        <button type="submit">Delete</button>
-      </div>
+    <div class="image-divs">
+      <form id="queued-form">
+        <div class="header">
+          <h3>Images Preview</h3>
+          <button type="submit">Upload</button>
+        </div>
 
-      <div class="saved-div"></div>
-    </form>
+        <div class="queued-div"></div>
+      </form>
 
-    <form id="queued-form">
-      <div class="header">
-        <h3>Images Preview</h3>
-        <button type="submit">Upload</button>
-      </div>
+      <form id="saved-form">
+        <div class="header">
+          <h3>Uploaded Image</h3>
+          <div class="buttons">
+            <div id="open">Scan</div>
+            <button id="delete" type="submit">Delete</button>
+          </div>
+        </div>
 
-      <div class="queued-div"></div>
-    </form>
+        <div class="saved-div"></div>
+      </form>
+    </div>
   </main>
+
+  <div id="modal_container" class="modal-container">
+    <div class="modal">
+      <h1 id="modal-title">Extraction Results</h1>
+
+      <div class="loader active">
+        <div class="container">
+          <div class="loading">
+            <div class="text"></div>
+            <!-- <div class="percent"> 100%</div> -->
+            <div class="progress-bar">
+              <div class="progress"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="selector"></div>
+
+      <div class="tabs">
+
+        <div class="container">
+          <div class="tab-container">
+            <div class="tab-box">
+              <button class="tab-btn active">Medication Details</button>
+              <button class="tab-btn">Drug Interactions</button>
+              <button class="tab-btn">Dosage Guidelines</button>
+              <button class="tab-btn">Side Effects</button>
+              <button class="tab-btn">Drug Prices</button>
+              <div class="line"></div>
+            </div>
+            <div class="content-box">
+              <div class="content active">
+                <p id="details">
+                  Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                  Eius dolorum incidunt distinctio iste, et aut veritatis
+                  perferendis sed earum tempore ex dolor? Unde obcaecati
+                  quisquam optio vel excepturi suscipit velit. Lorem ipsum
+                  dolor sit amet consectetur adipisicing elit. Blanditiis
+                  dolorum ullam quidem incidunt vitae non explicabo quod illo,
+                  eaque nesciunt!
+                </p>
+              </div>
+
+              <div class="content">
+                <p id="interactions">
+                  Drug Interaction: Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                  Eius dolorum incidunt distinctio iste, et aut veritatis
+                  perferendis sed earum tempore ex dolor? Unde obcaecati
+                  quisquam optio vel excepturi suscipit velit. Food Lorem ipsum
+                  dolor sit amet consectetur adipisicing elit. Blanditiis
+                  dolorum ullam quidem incidunt vitae non explicabo quod illo,
+                  eaque nesciunt!
+                </p>
+              </div>
+
+              <div class="content">
+                <p id="guidelines">
+                  Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                  Eius dolorum incidunt distinctio iste, et aut veritatis
+                  perferendis sed earum tempore ex dolor? Unde obcaecati
+                  quisquam optio vel excepturi suscipit velit. Lorem ipsum
+                  dolor sit amet consectetur adipisicing elit. Blanditiis
+                  dolorum ullam quidem incidunt vitae non explicabo quod illo,
+                  eaque nesciunt!
+                </p>
+              </div>
+
+              <div class="content">
+                <p id="effects">
+                  Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                  Eius dolorum incidunt distinctio iste, et aut veritatis
+                  perferendis sed earum tempore ex dolor? Unde obcaecati
+                  quisquam optio vel excepturi suscipit velit. Lorem ipsum
+                  dolor sit amet consectetur adipisicing elit. Blanditiis
+                  dolorum ullam quidem incidunt vitae non explicabo quod illo,
+                  eaque nesciunt!
+                </p>
+              </div>
+
+              <div class="content">
+                <p id="prices">
+                  Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                  Eius dolorum incidunt distinctio iste, et aut veritatis
+                  perferendis sed earum tempore ex dolor? Unde obcaecati
+                  quisquam optio vel excepturi suscipit velit. Lorem ipsum
+                  dolor sit amet consectetur adipisicing elit. Blanditiis
+                  dolorum ullam quidem incidunt vitae non explicabo quod illo,
+                  eaque nesciunt!
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="modal-buttons">
+        <button type="button" id="save" onclick="saveData();">Save</button>
+        <div class="server-message-modal">SERVER MESSAGE WILL SHOW HERE</div>
+        <button type="button" id="back">Back</button>
+        <button type="button" id="close">Close</button>
+      </div>
+    </div>
+  </div>
 
   <footer class="footer">
     <div class="container">
@@ -75,7 +196,7 @@
             <li><a href="#">Extract</a></li>
             <li><a href="#">Search</a></li>
             <li><a href="#">Settings</a></li>
-            <li><a href="#">Log Out</a></li>
+            <li><a href="/logout" onclick="confirmLogout()">Log Out</a></li>
           </ul>
         </div>
       </div>
@@ -84,18 +205,18 @@
         <h2>Contacts</h2>
         <div class="contacts">
           <div>
-            <img src="http://localhost:3000/flaticons/location.png" /> &nbsp;
+            <img src="/flaticons/user/location.png" /> &nbsp;
             <p>
               University of The East Caloocan, 105 Samson Rd, Caloocan, Metro
               Manila
             </p>
           </div>
           <div>
-            <img src="http://localhost:3000/flaticons/email.png" /> &nbsp;
+            <img src="/flaticons/user/email.png" /> &nbsp;
             <p>nogot.markvincent@ue.edu.ph</p>
           </div>
           <div>
-            <img src="http://localhost:3000/flaticons/call.png" /> &nbsp;
+            <img src="/flaticons/user/call.png" /> &nbsp;
             <p>09991624156</p>
           </div>
         </div>
@@ -106,71 +227,91 @@
   <script>
     let queuedImagesArray = [];
     savedForm = document.querySelector("#saved-form");
+    // deleteBtn = document.querySelector("#delete");
     queuedForm = document.querySelector("#queued-form");
     savedDiv = document.querySelector(".saved-div");
     queuedDiv = document.querySelector(".queued-div");
     inputDiv = document.querySelector(".input-div");
     input = document.querySelector(".input-div input");
+
     serverMessage = document.querySelector(".server-message");
-    savedImages = JSON.parse('<%- JSON.stringify(images) %>'); // new
+    serverMessageContainer = document.querySelector(".message-container .container");
+    serverMessageModal = document.querySelector(".server-message-modal");
+
+    savedImages = JSON.parse('<%- JSON.stringify(images) %>');
+
+
+
     deleteImages = [];
 
-    // SAVED IN SERVER IMAGES
+    function confirmLogout() {
+      if (confirm("Are you sure you want to log out?")) {
+        window.location.href = "/logout";
+      }
+    }
 
-    if(savedImages) {
+
+    // SAVED IN DATABASE IMAGES
+
+    if (savedImages) {
       displayedSavedImages()
     }
 
-    function displayedSavedImages() { // new
-      let images = "";
-      savedImages.forEach((image, index) => {
-        images += `<div class="image">
-                   <img src="http://localhost:3000/${image.image_key}" alt="image">
-                   <span onclick="deleteSavedImage(${index})">&times;</span>
-                   </div>`
-      })
-      savedDiv.innerHTML = images;
+    function displayedSavedImages() {
+      let image = savedImages[0]; // Only care about one image
+
+      if (image && image.user_id) {
+        savedDiv.innerHTML = `
+      <div class="image">
+        <img src="http://localhost:3000/user-image/${image.user_id}" alt="Saved Image">
+      </div>`;
+      } else {
+        savedDiv.innerHTML = ""; // Nothing to show
+      }
     }
 
-    function deleteSavedImage(index){ // new 
-      deleteImages.push(savedImages[index].image_key);
-      savedImages.splice(index, 1);
-      displayedSavedImages();
-    }
+
+
+    // function deleteSavedImage(index) { // new 
+    //   deleteImages.push(savedImages[index]);
+    //   savedImages.splice(index, 1);
+    //   displayedSavedImages();
+    // }
 
     savedForm.addEventListener("submit", (e) => { // new
       e.preventDefault();
       deleteImagesFromServer();
     });
 
-    function deleteImagesFromServer(){ // new
-     fetch("delete", {
+    function deleteImagesFromServer() {
+      fetch("delete", {
         method: "PUT",
         headers: {
           "Accept": "application/json, text/plain, */*",
           "Content-Type": "application/json"
         },
-        body: JSON.stringify({ deleteImages})
+        body: JSON.stringify({ deleteImages })
       })
-      .then(response => {
-        if(response.status !== 200) throw Error(response.statusText)
-        deleteImages = []
-        serverMessage.innerHTML = response.statusText
-        serverMessage.style.cssText = "background-color: #D4EDDA; color: #1B5E20;"
-      })
-
-      .catch(error => {
-        serverMessage.innerHTML = error
-        serverMessage.style.cssText = "background-color: #F8D7DA; color: #B71C1C;"
-      });
+        .then(response => response.json().then(data => {
+          if (!response.ok) throw new Error(data.message);
+          deleteImages = [];
+          // showServerMessage(data.message);
+          location.reload();
+        }))
+        .catch(error => {
+          showServerMessage(error.message, false);
+        });
     }
+
+
 
     // QUEUED IN FRONTEND IMAGES
 
     input.addEventListener("change", () => {
       const files = input.files;
-      for (let i = 0; i < files.length; i++) {
-        queuedImagesArray.push(files[i]);
+      if (files.length) {
+        // Only keep the first file
+        queuedImagesArray = [files[0]];
       }
       queuedForm.reset();
       displayQueuedImages();
@@ -179,55 +320,308 @@
     inputDiv.addEventListener("drop", (e) => {
       e.preventDefault();
       const files = e.dataTransfer.files;
+
       for (let i = 0; i < files.length; i++) {
         if (!files[i].type.match("image")) continue;
 
-        if (queuedImagesArray.every(image => image.name !== files[i].name))
-          queuedImagesArray.push(files[i]);
+        // Only allow the first image to be added
+        queuedImagesArray = [files[i]];
+        break;
       }
+
       displayQueuedImages();
     });
+
 
     function displayQueuedImages() {
       let images = "";
       queuedImagesArray.forEach((image, index) => {
         images += `<div class="image">
                    <img src="${URL.createObjectURL(image)}" alt="image">
-                   <span onclick="deleteQueuedImage(${index})">&times;</span>
                    </div>`
       })
       queuedDiv.innerHTML = images;
+      console.log(images);
     }
-
-    function deleteQueuedImage(index) {
-      queuedImagesArray.splice(index, 1);
-      displayQueuedImages();
-     }
 
     queuedForm.addEventListener("submit", (e) => {
       e.preventDefault();
       sendQueuedImagesToServer();
     })
 
-    function sendQueuedImagesToServer(){
+    function sendQueuedImagesToServer() {
       const formData = new FormData(queuedForm);
-
       queuedImagesArray.forEach((image, index) => {
-        formData.append(`file[${index}]`, image)
-      })
-
-      fetch("upload", {method: "POST", body : formData})
-
-      .then(response => {
-        if(response.status !== 200) throw Error(response.statusText)
-        location.reload()
-      })
-
-      .catch(error => {
-        serverMessage.innerHTML = error
-        serverMessage.style.cssText = "background-color: #F8D7DA; color: #B71C1C;"
+        formData.append(`file[${index}]`, image);
       });
+
+      fetch("upload", { method: "POST", body: formData })
+        .then(response => response.json().then(data => {
+          if (!response.ok) throw new Error(data.message);
+          // showServerMessage(data.message);
+          location.reload();
+        }))
+        .catch(error => {
+          showServerMessage(error.message, false);
+        });
     }
+
+
+
+    // tabs
+
+    const tabs = document.querySelectorAll(".tab-btn");
+    const contents = document.querySelectorAll(".content");
+
+    tabs.forEach((tab, index) => {
+      tab.addEventListener("click", (e) => {
+        tabs.forEach((tab) => {
+          tab.classList.remove("active");
+        });
+        tab.classList.add("active");
+        var line = document.querySelector(".line");
+        line.style.width = e.target.offsetWidth + "px";
+        line.style.left = e.target.offsetLeft + "px";
+
+        contents.forEach((content) => {
+          content.classList.remove("active");
+        });
+        contents[index].classList.add("active");
+      });
+    });
+
+    // modal
+
+    const open = document.getElementById("open");
+    const modal_container = document.getElementById("modal_container");
+    const close = document.getElementById("close");
+    const back = document.getElementById("back");
+    const saveBtn = document.querySelector("#save");
+    const modalTitle = document.querySelector("#modal-title");
+
+    const tabActive = document.querySelector(".tabs");
+    const loaderActive = document.querySelector(".loader");
+    const selectorDiv = document.querySelector(".selector");
+
+    let userSelectedMedicine = false;
+
+
+    let loading;
+
+    open.addEventListener('click', () => {
+
+      userSelectedMedicine = false; // reset selection
+
+      modal_container.classList.add('show');
+
+      // Reset progress bar and start animation
+      count = 0;
+      per = 0;
+      progress.style.width = "0px"; // Reset progress bar width
+      loading = setInterval(animate, 10); // Start the animation
+    })
+
+    back.addEventListener('click', () => {
+
+      clearInterval(loading); // Stop the interval
+      count = 0;
+      per = 0;
+      progress.style.width = "0px";
+
+      loaderActive.classList.remove("active");
+      tabActive.classList.remove("active");
+      back.classList.remove("active");
+      saveBtn.classList.remove("active");
+
+      selectorDiv.classList.add("active");
+      modalTitle.textContent = "Extraction Results";
+    });
+
+    close.addEventListener('click', () => {
+
+      userSelectedMedicine = false; // reset selection
+      modal_container.classList.remove('show');
+
+      // Stop and reset the animation
+      clearInterval(loading); // Stop the interval
+      count = 0;
+      per = 0;
+      progress.style.width = "0px"; // Reset progress bar width
+
+      loaderActive.classList.add("active");
+      tabActive.classList.remove("active");
+      selectorDiv.classList.remove("active");
+      saveBtn.classList.remove("active");
+      back.classList.remove("active");
+      modalTitle.textContent = "Extraction Results";
+    });
+
+    // progress bar
+
+    var progress = document.querySelector(".progress");
+    var text = document.querySelector(".text");
+
+    var count = 0; // Start at 0%
+    var per = 0;   // Start at 0px
+
+    // var loading = setInterval(animate, 50);
+
+    function animate() {
+      if ((count == 100) & (per == 600)) {
+        text.classList.remove("text-blink");
+        loaderActive.classList.remove("active");
+
+        // ✅ Only show selector if user hasn't selected yet
+        if (!userSelectedMedicine) {
+          selectorDiv.classList.add("active");
+        }
+
+        text.innerHTML = "";
+
+      } else {
+        text.innerHTML = "Scanning Image... Please wait.";
+        text.classList.add("text-blink");
+        per = per + 6;
+        count = count + 1;
+        progress.style.width = per + "px";
+      }
+    }
+
+    function animate2() {
+      if ((count == 100) & (per == 600)) {
+        text.classList.remove("text-blink");
+        loaderActive.classList.remove("active");
+        tabActive.classList.add("active");
+        back.classList.add("active");
+        saveBtn.classList.add("active");
+        text.innerHTML = "";
+
+
+      } else {
+        text.innerHTML = "Generating medical insight... Please wait.";
+        text.classList.add("text-blink");
+        per = per + 6;
+        count = count + 1;
+        progress.style.width = per + "px";
+      }
+    }
+
+
+    // selector
+
+    const medicineArray = ["Paracetamol", "Ibuprofen", "Amoxicillin"]; // Replace this with your extracted list
+
+    function renderMedicineList(medicines) {
+      // Clear current list
+      selectorDiv.innerHTML = "";
+
+      // Create list
+      const ul = document.createElement("ul");
+      ul.classList.add("medicine-list");
+
+      medicines.forEach((med) => {
+        const li = document.createElement("li");
+        li.textContent = med;
+        li.classList.add("medicine-item");
+        li.onclick = () => {
+          openMedicineModal(med);
+          selectorDiv.classList.remove("active");
+        } // Attach modal logic
+        ul.appendChild(li);
+      });
+
+      selectorDiv.appendChild(ul);
+    }
+
+    function openMedicineModal(medicineName) {
+
+      // Stop and reset the animation
+      clearInterval(loading); // Stop the interval
+      count = 0;
+      per = 0;
+      progress.style.width = "0px"; // Reset progress bar width
+
+      // Reset progress bar and start animation
+      count = 0;
+      per = 0;
+      progress.style.width = "0px"; // Reset progress bar width
+      loading = setInterval(animate2, 10); // Start the animation
+      loaderActive.classList.add("active");
+
+      userSelectedMedicine = true; // user made a selection
+
+      selectorDiv.classList.remove("active");
+      modalTitle.textContent = `${medicineName} Medical Insights`;
+
+
+    }
+
+
+    // Initialize with extracted medicine names
+    renderMedicineList(medicineArray);
+
+    const saveButton = document.getElementById("save");
+
+    function saveData() {
+      const modalTitle = document.querySelector("#modal-title");
+      const medicineName = modalTitle.textContent.split(" Medical Insights")[0];
+      const details = document.getElementById("details").textContent;
+      const interactions = document.getElementById("interactions").textContent;
+      const guidelines = document.getElementById("guidelines").textContent;
+      const effects = document.getElementById("effects").textContent;
+      const prices = document.getElementById("prices").textContent;
+
+      const data = { medicineName, details, interactions, guidelines, effects, prices };
+
+      fetch('/user/save-history', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(data)
+      })
+        .then(response => response.json().then(json => {
+          if (!response.ok) throw new Error(json.message);
+          showServerMessageModal(json.message);
+        }))
+        .catch(error => {
+          console.error('Error:', error);
+          showServerMessageModal(error.message, false);
+        });
+    }
+
+
+
+    function showServerMessage(message, isSuccess = true) {
+      serverMessage.innerHTML = message;
+      serverMessage.style.cssText = isSuccess
+        ? "background-color: #D4EDDA; color: #1B5E20;"
+        : "background-color: #F8D7DA; color: #B71C1C;";
+      serverMessage.classList.add("active");
+      serverMessageContainer.classList.add("active");
+
+      setTimeout(() => {
+        serverMessage.classList.remove("active");
+        serverMessageContainer.classList.remove("active");
+      }, 4000);
+    }
+
+    function showServerMessageModal(message, isSuccess = true) {
+      serverMessageModal.innerHTML = message;
+      serverMessageModal.style.cssText = isSuccess
+        ? "background-color: #D4EDDA; color: #1B5E20;"
+        : "background-color: #F8D7DA; color: #B71C1C;";
+      serverMessageModal.classList.add("active");
+
+
+      setTimeout(() => {
+        serverMessageModal.classList.remove("active");
+      }, 4000);
+    }
+
+
+
+
+
+
 
   </script>
 </body>

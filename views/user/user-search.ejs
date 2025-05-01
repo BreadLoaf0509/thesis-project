@@ -1,317 +1,263 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="/css/style.css" />
-    <link rel="stylesheet" href="/css/user/user-search.css" />
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
-    />
-    <title>MedExtract</title>
-  </head>
 
-  <body>
-    <nav class="user-navbar">
-      <div class="container">
-        <div class="logo">
-          <h1><a href="#">MedExtract</a></h1>
-        </div>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="/css/style.css" />
+  <link rel="stylesheet" href="/css/user/user-search.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
+  <title>MedExtract</title>
+</head>
 
-        <ul class="nav">
-          <li><a href="/user-extract">Extract</a></li>
-          <li><a href="/user-search">Search</a></li>
-          <li><a href="/user-settings">Settings</a></li>
-          <li><a href="/">Log Out</a></li>
-        </ul>
+<body>
+  <nav class="user-navbar">
+    <div class="container">
+      <div class="logo">
+        <h1><a href="#">MedExtract</a></h1>
       </div>
-    </nav>
 
-    <main class="search-function">
-      <div class="container">
-        <div class="wrapper">
-          <div class="search-bar">
-            <input type="text" placeholder="Search for drug..." />
-            <div class="drug-list"></div>
-            <div id="open" class="icon"><i class="fas fa-search"></i></div>
-          </div>
-        </div>
-      </div>
-    </main>
-
-    <div id="modal_container" class="modal-container">
-      <div class="modal">
-        <h1 id="modal-title">Modal</h1>
-
-        <div class="loader active">
-          <div class="container">
-            <div class="loading">
-              <div class="text">Generating medical insight... Please wait.</div>
-              <!-- <div class="percent"> 100%</div> -->
-              <div class="progress-bar">
-                <div class="progress"></div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="tabs">
-          <div class="container">
-            <div class="tab-container">
-              <div class="tab-box">
-                <button class="tab-btn active">Medication Details</button>
-                <button class="tab-btn">Drug Interactions</button>
-                <button class="tab-btn">Dosage Guidelines</button>
-                <button class="tab-btn">Side Effects</button>
-                <button class="tab-btn">Drug Prices</button>
-                <div class="line"></div>
-              </div>
-              <div class="content-box">
-                <div class="content active">
-                  <p>
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                    Eius dolorum incidunt distinctio iste, et aut veritatis
-                    perferendis sed earum tempore ex dolor? Unde obcaecati
-                    quisquam optio vel excepturi suscipit velit. Lorem ipsum
-                    dolor sit amet consectetur adipisicing elit. Blanditiis
-                    dolorum ullam quidem incidunt vitae non explicabo quod illo,
-                    eaque nesciunt! Saepe voluptates iure architecto. Unde iure
-                    nam dolorem architecto quia? Lorem ipsum, dolor sit amet
-                    consectetur adipisicing elit. Repellendus, error fugit cum
-                    vero ad impedit excepturi numquam at velit maiores
-                    dignissimos. Nobis in sunt laudantium repellendus doloremque
-                    aliquam, exercitationem voluptatibus. Lorem ipsum dolor sit
-                    amet, consectetur adipisicing elit. Laudantium nihil
-                    repellendus odio, itaque sit rerum numquam provident
-                    similique, totam qui atque ullam ratione optio vel
-                    voluptatum accusamus commodi deleniti beatae? Lorem ipsum
-                    dolor sit amet consectetur adipisicing elit. Veritatis
-                    voluptates eum corporis repudiandae hic a placeat
-                    consequuntur ea nulla, sunt libero ratione debitis sint
-                    quisquam ullam modi adipisci animi dolorem. Lorem ipsum
-                    dolor sit amet, consectetur adipisicing elit. Ab libero
-                    omnis sunt tempore inventore facere culpa at et odit
-                    similique natus, unde numquam rerum pariatur mollitia vitae
-                    consequatur illum debitis? Lorem ipsum dolor sit amet,
-                    consectetur adipisicing elit. Magni dolorum hic quisquam
-                    esse. Esse hic autem debitis tenetur mollitia ipsam nam
-                    exercitationem molestiae, quaerat optio provident officia
-                    consequuntur eveniet sed?
-                  </p>
-                </div>
-
-                <div class="content">
-                  <p>
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                    Eius dolorum incidunt distinctio iste, et aut veritatis
-                    perferendis sed earum tempore ex dolor? Unde obcaecati
-                    quisquam optio vel excepturi suscipit velit. Lorem ipsum
-                    dolor sit amet consectetur adipisicing elit. Blanditiis
-                    dolorum ullam quidem incidunt vitae non explicabo quod illo,
-                    eaque nesciunt! Saepe voluptates iure architecto. Unde iure
-                    nam dolorem architecto quia? Lorem ipsum, dolor sit amet
-                    consectetur adipisicing elit. Repellendus, error fugit cum
-                    vero ad impedit excepturi numquam at velit maiores
-                    dignissimos. Nobis in sunt laudantium repellendus doloremque
-                    aliquam, exercitationem voluptatibus. Lorem ipsum dolor sit
-                    amet, consectetur adipisicing elit. Laudantium nihil
-                    repellendus odio, itaque sit rerum numquam provident
-                    similique, totam qui atque ullam ratione optio vel
-                    voluptatum accusamus commodi deleniti beatae? Lorem ipsum
-                    dolor sit amet consectetur adipisicing elit. Veritatis
-                    voluptates eum corporis repudiandae hic a placeat
-                    consequuntur ea nulla, sunt libero ratione debitis sint
-                    quisquam ullam modi adipisci animi dolorem. Lorem ipsum
-                    dolor sit amet, consectetur adipisicing elit. Ab libero
-                    omnis sunt tempore inventore facere culpa at et odit
-                    similique natus, unde numquam rerum pariatur mollitia vitae
-                    consequatur illum debitis? Lorem ipsum dolor sit amet,
-                    consectetur adipisicing elit. Magni dolorum hic quisquam
-                    esse. Esse hic autem debitis tenetur mollitia ipsam nam
-                    exercitationem molestiae, quaerat optio provident officia
-                    consequuntur eveniet sed?
-                  </p>
-                </div>
-
-                <div class="content">
-                  <p>
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                    Eius dolorum incidunt distinctio iste, et aut veritatis
-                    perferendis sed earum tempore ex dolor? Unde obcaecati
-                    quisquam optio vel excepturi suscipit velit. Lorem ipsum
-                    dolor sit amet consectetur adipisicing elit. Blanditiis
-                    dolorum ullam quidem incidunt vitae non explicabo quod illo,
-                    eaque nesciunt! Saepe voluptates iure architecto. Unde iure
-                    nam dolorem architecto quia? Lorem ipsum, dolor sit amet
-                    consectetur adipisicing elit. Repellendus, error fugit cum
-                    vero ad impedit excepturi numquam at velit maiores
-                    dignissimos. Nobis in sunt laudantium repellendus doloremque
-                    aliquam, exercitationem voluptatibus. Lorem ipsum dolor sit
-                    amet, consectetur adipisicing elit. Laudantium nihil
-                    repellendus odio, itaque sit rerum numquam provident
-                    similique, totam qui atque ullam ratione optio vel
-                    voluptatum accusamus commodi deleniti beatae? Lorem ipsum
-                    dolor sit amet consectetur adipisicing elit. Veritatis
-                    voluptates eum corporis repudiandae hic a placeat
-                    consequuntur ea nulla, sunt libero ratione debitis sint
-                    quisquam ullam modi adipisci animi dolorem. Lorem ipsum
-                    dolor sit amet, consectetur adipisicing elit. Ab libero
-                    omnis sunt tempore inventore facere culpa at et odit
-                    similique natus, unde numquam rerum pariatur mollitia vitae
-                    consequatur illum debitis? Lorem ipsum dolor sit amet,
-                    consectetur adipisicing elit. Magni dolorum hic quisquam
-                    esse. Esse hic autem debitis tenetur mollitia ipsam nam
-                    exercitationem molestiae, quaerat optio provident officia
-                    consequuntur eveniet sed?
-                  </p>
-                </div>
-
-                <div class="content">
-                  <p>
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                    Eius dolorum incidunt distinctio iste, et aut veritatis
-                    perferendis sed earum tempore ex dolor? Unde obcaecati
-                    quisquam optio vel excepturi suscipit velit. Lorem ipsum
-                    dolor sit amet consectetur adipisicing elit. Blanditiis
-                    dolorum ullam quidem incidunt vitae non explicabo quod illo,
-                    eaque nesciunt! Saepe voluptates iure architecto. Unde iure
-                    nam dolorem architecto quia? Lorem ipsum, dolor sit amet
-                    consectetur adipisicing elit. Repellendus, error fugit cum
-                    vero ad impedit excepturi numquam at velit maiores
-                    dignissimos. Nobis in sunt laudantium repellendus doloremque
-                    aliquam, exercitationem voluptatibus. Lorem ipsum dolor sit
-                    amet, consectetur adipisicing elit. Laudantium nihil
-                    repellendus odio, itaque sit rerum numquam provident
-                    similique, totam qui atque ullam ratione optio vel
-                    voluptatum accusamus commodi deleniti beatae? Lorem ipsum
-                    dolor sit amet consectetur adipisicing elit. Veritatis
-                    voluptates eum corporis repudiandae hic a placeat
-                    consequuntur ea nulla, sunt libero ratione debitis sint
-                    quisquam ullam modi adipisci animi dolorem. Lorem ipsum
-                    dolor sit amet, consectetur adipisicing elit. Ab libero
-                    omnis sunt tempore inventore facere culpa at et odit
-                    similique natus, unde numquam rerum pariatur mollitia vitae
-                    consequatur illum debitis? Lorem ipsum dolor sit amet,
-                    consectetur adipisicing elit. Magni dolorum hic quisquam
-                    esse. Esse hic autem debitis tenetur mollitia ipsam nam
-                    exercitationem molestiae, quaerat optio provident officia
-                    consequuntur eveniet sed?
-                  </p>
-                </div>
-
-                <div class="content">
-                  <p>
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                    Eius dolorum incidunt distinctio iste, et aut veritatis
-                    perferendis sed earum tempore ex dolor? Unde obcaecati
-                    quisquam optio vel excepturi suscipit velit. Lorem ipsum
-                    dolor sit amet consectetur adipisicing elit. Blanditiis
-                    dolorum ullam quidem incidunt vitae non explicabo quod illo,
-                    eaque nesciunt! Saepe voluptates iure architecto. Unde iure
-                    nam dolorem architecto quia? Lorem ipsum, dolor sit amet
-                    consectetur adipisicing elit. Repellendus, error fugit cum
-                    vero ad impedit excepturi numquam at velit maiores
-                    dignissimos. Nobis in sunt laudantium repellendus doloremque
-                    aliquam, exercitationem voluptatibus. Lorem ipsum dolor sit
-                    amet, consectetur adipisicing elit. Laudantium nihil
-                    repellendus odio, itaque sit rerum numquam provident
-                    similique, totam qui atque ullam ratione optio vel
-                    voluptatum accusamus commodi deleniti beatae? Lorem ipsum
-                    dolor sit amet consectetur adipisicing elit. Veritatis
-                    voluptates eum corporis repudiandae hic a placeat
-                    consequuntur ea nulla, sunt libero ratione debitis sint
-                    quisquam ullam modi adipisci animi dolorem. Lorem ipsum
-                    dolor sit amet, consectetur adipisicing elit. Ab libero
-                    omnis sunt tempore inventore facere culpa at et odit
-                    similique natus, unde numquam rerum pariatur mollitia vitae
-                    consequatur illum debitis? Lorem ipsum dolor sit amet,
-                    consectetur adipisicing elit. Magni dolorum hic quisquam
-                    esse. Esse hic autem debitis tenetur mollitia ipsam nam
-                    exercitationem molestiae, quaerat optio provident officia
-                    consequuntur eveniet sed?
-                  </p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <button id="close">Close</button>
-      </div>
+      <div class="current-user">
+        <h5 class="username-holder">Hey there! <%= username %></h5>
     </div>
 
-    <footer class="footer">
-      <div class="container">
-        <div class="f-1">
-          <h2>MedExtract</h2>
-          <p>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Adipisci,
-            id aspernatur itaque cumque vitae odit sint eligendi nam libero
-            voluptate magni aperiam, veniam ullam tenetur quidem nostrum enim
-            eos a.
-          </p>
-        </div>
+      <ul class="nav">
+        <li><a href="/user-extract">Extract</a></li>
+        <li><a href="/user-search">Search</a></li>
+        <li><a href="/user-settings">Settings</a></li>
+        <li><a href="/">Log Out</a></li>
+      </ul>
+    </div>
+  </nav>
 
-        <div class="f-2">
-          <div>
-            <h2>Links</h2>
-            <ul class="nav">
-              <li><a href="#">Extract</a></li>
-              <li><a href="#">Search</a></li>
-              <li><a href="#">Settings</a></li>
-              <li><a href="#">Log Out</a></li>
-            </ul>
-          </div>
+  <main class="search-function">
+    <div class="container">
+      <div class="wrapper">
+        <div class="search-bar">
+          <input type="text" placeholder="Search for drug..." />
+          <div class="drug-list"></div>
+          <div id="open" class="icon"><i class="fas fa-search"></i></div>
         </div>
+      </div>
+    </div>
+  </main>
 
-        <div class="f-3">
-          <h2>Contacts</h2>
-          <div class="contacts">
-            <div>
-              <img src="/Flaticons/index/location.png" /> &nbsp;
-              <p>
-                University of The East Caloocan, 105 Samson Rd, Caloocan, Metro
-                Manila
-              </p>
-            </div>
-            <div>
-              <img src="/Flaticons/index/email.png" /> &nbsp;
-              <p>nogot.markvincent@ue.edu.ph</p>
-            </div>
-            <div>
-              <img src="/Flaticons/index/call.png" /> &nbsp;
-              <p>09991624156</p>
+  <div id="modal_container" class="modal-container">
+    <div class="modal">
+      <h1 id="modal-title">Modal</h1>
+
+      <div class="loader active">
+        <div class="container">
+          <div class="loading">
+            <div class="text">Generating medical insight... Please wait.</div>
+            <!-- <div class="percent"> 100%</div> -->
+            <div class="progress-bar">
+              <div class="progress"></div>
             </div>
           </div>
         </div>
       </div>
-    </footer>
 
-    <script src="../../js/user/user-search.js"></script>
-    <script src="../../js/user/auto-complete.js"></script>
-    <script>
-      // tabs
+      <div class="tabs">
+        <div class="container">
+          <div class="tab-container">
+            <div class="tab-box">
+              <button class="tab-btn active">Medication Details</button>
+              <button class="tab-btn">Drug Interactions</button>
+              <button class="tab-btn">Dosage Guidelines</button>
+              <button class="tab-btn">Side Effects</button>
+              <button class="tab-btn">Drug Prices</button>
+              <div class="line"></div>
+            </div>
+            <div class="content-box">
+              <div class="content active">
+                <p id="details">
+                  Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                  Eius dolorum incidunt distinctio iste, et aut veritatis
+                  perferendis sed earum tempore ex dolor? Unde obcaecati
+                  quisquam optio vel excepturi suscipit velit. Lorem ipsum
+                  dolor sit amet consectetur adipisicing elit. Blanditiis
+                  dolorum ullam quidem incidunt vitae non explicabo quod illo,
+                  eaque nesciunt! Saepe voluptates iure architecto. Unde iure
+                  nam dolorem architecto quia? Lorem ipsum, dolor sit amet
+                  consectetur adipisicing elit. 
+                </p>
+              </div>
 
-      const tabs = document.querySelectorAll(".tab-btn");
-      const contents = document.querySelectorAll(".content");
+              <div class="content">
+                <p id="interactions">
+                  Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                  Eius dolorum incidunt distinctio iste, et aut veritatis
+                  perferendis sed earum tempore ex dolor? Unde obcaecati
+                  quisquam optio vel excepturi suscipit velit. Lorem ipsum
+                  dolor sit amet consectetur adipisicing elit. Blanditiis
+                  dolorum ullam quidem incidunt vitae non explicabo quod illo,
+                  eaque nesciunt! Saepe voluptates iure architecto. Unde iure
+                  nam dolorem architecto quia? Lorem ipsum, dolor sit amet
+                  consectetur adipisicing elit. 
+                </p>
+              </div>
 
-      tabs.forEach((tab, index) => {
-        tab.addEventListener("click", (e) => {
-          tabs.forEach((tab) => {
-            tab.classList.remove("active");
-          });
-          tab.classList.add("active");
-          var line = document.querySelector(".line");
-          line.style.width = e.target.offsetWidth + "px";
-          line.style.left = e.target.offsetLeft + "px";
+              <div class="content">
+                <p id="guidelines">
+                  Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                  Eius dolorum incidunt distinctio iste, et aut veritatis
+                  perferendis sed earum tempore ex dolor? Unde obcaecati
+                  quisquam optio vel excepturi suscipit velit. Lorem ipsum
+                  dolor sit amet consectetur adipisicing elit. Blanditiis
+                  dolorum ullam quidem incidunt vitae non explicabo quod illo,
+                  eaque nesciunt! Saepe voluptates iure architecto. Unde iure
+                  nam dolorem architecto quia? Lorem ipsum, dolor sit amet
+                  consectetur adipisicing elit. 
+                </p>
+              </div>
 
-          contents.forEach((content) => {
-            content.classList.remove("active");
-          });
-          contents[index].classList.add("active");
+              <div class="content">
+                <p id="effects">
+                  Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                  Eius dolorum incidunt distinctio iste, et aut veritatis
+                  perferendis sed earum tempore ex dolor? Unde obcaecati
+                  quisquam optio vel excepturi suscipit velit. Lorem ipsum
+                  dolor sit amet consectetur adipisicing elit. Blanditiis
+                  dolorum ullam quidem incidunt vitae non explicabo quod illo,
+                  eaque nesciunt! Saepe voluptates iure architecto. Unde iure
+                  nam dolorem architecto quia? Lorem ipsum, dolor sit amet
+                  consectetur adipisicing elit. 
+                </p>
+              </div>
+
+              <div class="content">
+                <p id="prices">
+                  Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                  Eius dolorum incidunt distinctio iste, et aut veritatis
+                  perferendis sed earum tempore ex dolor? Unde obcaecati
+                  quisquam optio vel excepturi suscipit velit. Lorem ipsum
+                  dolor sit amet consectetur adipisicing elit. Blanditiis
+                  dolorum ullam quidem incidunt vitae non explicabo quod illo,
+                  eaque nesciunt! Saepe voluptates iure architecto. Unde iure
+                  nam dolorem architecto quia? Lorem ipsum, dolor sit amet
+                  consectetur adipisicing elit. 
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="modal-buttons">
+        <button type="button" id="save" onclick="saveData();">Save</button>
+        <button type="button" id="close">Close</button>
+      </div>
+    </div>
+  </div>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="f-1">
+        <h2>MedExtract</h2>
+        <p>
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Adipisci,
+          id aspernatur itaque cumque vitae odit sint eligendi nam libero
+          voluptate magni aperiam, veniam ullam tenetur quidem nostrum enim
+          eos a.
+        </p>
+      </div>
+
+      <div class="f-2">
+        <div>
+          <h2>Links</h2>
+          <ul class="nav">
+            <li><a href="#">Extract</a></li>
+            <li><a href="#">Search</a></li>
+            <li><a href="#">Settings</a></li>
+            <li><a href="#">Log Out</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="f-3">
+        <h2>Contacts</h2>
+        <div class="contacts">
+          <div>
+            <img src="/Flaticons/index/location.png" /> &nbsp;
+            <p>
+              University of The East Caloocan, 105 Samson Rd, Caloocan, Metro
+              Manila
+            </p>
+          </div>
+          <div>
+            <img src="/Flaticons/index/email.png" /> &nbsp;
+            <p>nogot.markvincent@ue.edu.ph</p>
+          </div>
+          <div>
+            <img src="/Flaticons/index/call.png" /> &nbsp;
+            <p>09991624156</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="../../js/user/user-search.js"></script>
+  <script src="../../js/user/auto-complete.js"></script>
+  <script>
+    // tabs
+
+    const tabs = document.querySelectorAll(".tab-btn");
+    const contents = document.querySelectorAll(".content");
+
+    tabs.forEach((tab, index) => {
+      tab.addEventListener("click", (e) => {
+        tabs.forEach((tab) => {
+          tab.classList.remove("active");
         });
-      });
+        tab.classList.add("active");
+        var line = document.querySelector(".line");
+        line.style.width = e.target.offsetWidth + "px";
+        line.style.left = e.target.offsetLeft + "px";
 
-    </script>
-  </body>
+        contents.forEach((content) => {
+          content.classList.remove("active");
+        });
+        contents[index].classList.add("active");
+      });
+    });
+
+    const saveButton = document.getElementById("save");
+
+    function saveData() {
+      const modalTitle = document.querySelector("#modal-title");
+      var medicineName = modalTitle.textContent.slice(17);
+      const details = document.getElementById("details").textContent;
+      const interactions = document.getElementById("interactions").textContent;
+      const guidelines = document.getElementById("guidelines").textContent;
+      const effects = document.getElementById("effects").textContent;
+      const prices = document.getElementById("prices").textContent;
+
+      const data = { medicineName, details, interactions, guidelines, effects, prices };
+
+      // Fetch to send data to backend
+      fetch('/user/save-history', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(data)
+      })
+        .then(response => {
+          if (response.ok) {
+            alert('Data saved successfully!');
+          } else {
+            alert('Failed to save data.');
+          }
+        })
+        .catch(error => {
+          console.error('Error:', error);
+          alert('An error occurred while saving.');
+        });
+    }
+
+
+  </script>
+</body>
+
 </html>

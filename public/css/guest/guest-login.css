@@ -5,11 +5,22 @@
 }
 
 #form {
+    margin: 50px 0;
     width: 400px;
     padding: 20px;
     background-color: whitesmoke;
     border-radius: 4px;
     font-size: 12px;
+}
+
+button {
+    padding: 10px;
+    margin-top: 10px;
+    width: 100%;
+    color: white;
+    background-color: #0288D1;
+    border: none;
+    border-radius: 4px;
 }
 
 #form h1 {
@@ -57,4 +68,75 @@
     color: #ff3860;
     font-size: 9px;
     height: 13px;
+}
+
+/* password */
+
+.password {
+    display: flex;  
+    gap: 8px; /* Add spacing between the checkbox and label */
+    justify-content: flex-end;
+}
+
+.password .show-password {
+    width: 13px;
+}
+
+/* modal */
+
+.modal-container {
+    background-color: rgba(0, 0, 0, 0.5);
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    width: 100vw;
+    opacity: 0;
+    pointer-events: none;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    transition: opacity 0.1s ease;
+}
+
+.modal-container.show {
+    pointer-events: auto;
+    opacity: 1;
+}
+
+.modal {
+    background-color: white;
+    border-radius: 25px;
+    padding: 30px;
+    width: 500px;
+    height: 200px;
+    max-width: 100%;
+    text-align: center;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+
+.modal button {
+    align-self: flex-end;
+}
+
+#modal-title{
+    font-size: 28px;
+    align-self: center;
+}
+
+/* links */
+
+.links{
+    display: flex;
+    justify-content: space-between;
+    margin-top: 10px;
+}
+
+.links a{
+    color: blue;
 }

@@ -4,47 +4,47 @@ const searchWrapper = document.querySelector(".search-bar");
 const inputBox = searchWrapper.querySelector("input");
 const drug_list = searchWrapper.querySelector(".drug-list");
 
-inputBox.onkeyup = (e) => {
-    let userData = e.target.value;
-    let emptyArray = [];
-    if (userData) {
-        emptyArray = auto_complete.filter((data) => {
-            return data.toLocaleLowerCase().startsWith(userData.toLocaleLowerCase());
-        });
-        emptyArray = emptyArray.map((data) => {
-            return data = `<li>${data}</li>`;
-        });
-        searchWrapper.classList.add("active");
-        showDrugList(emptyArray);
+// inputBox.onkeyup = (e) => {
+//     let userData = e.target.value;
+//     let emptyArray = [];
+//     if (userData) {
+//         emptyArray = auto_complete.filter((data) => {
+//             return data.toLocaleLowerCase().startsWith(userData.toLocaleLowerCase());
+//         });
+//         emptyArray = emptyArray.map((data) => {
+//             return data = `<li>${data}</li>`;
+//         });
+//         searchWrapper.classList.add("active");
+//         showDrugList(emptyArray);
 
-        let allList = drug_list.querySelectorAll("li");
-        for (let i = 0; i < allList.length; i++) {
-            allList[i].setAttribute("onclick", "select(this)");
-        }
-    }
-    else {
-        searchWrapper.classList.remove("active");
-    }
-}
+//         let allList = drug_list.querySelectorAll("li");
+//         for (let i = 0; i < allList.length; i++) {
+//             allList[i].setAttribute("onclick", "select(this)");
+//         }
+//     }
+//     else {
+//         searchWrapper.classList.remove("active");
+//     }
+// }
 
-function select(element) {
-    let selectedUserData = element.textContent;
-    inputBox.value = selectedUserData;
-    searchWrapper.classList.remove("active");
-}
+// function select(element) {
+//     let selectedUserData = element.textContent;
+//     inputBox.value = selectedUserData;
+//     searchWrapper.classList.remove("active");
+// }
 
-function showDrugList(list) {
-    let listData;
-    if (!list.length) {
-        userValue = inputBox.value;
-        listData = `<li>${userValue}</li>`;
-    }
-    else {
-        listData = list.join('');
-    }
+// function showDrugList(list) {
+//     let listData;
+//     if (!list.length) {
+//         userValue = inputBox.value;
+//         listData = `<li>${userValue}</li>`;
+//     }
+//     else {
+//         listData = list.join('');
+//     }
 
-    drug_list.innerHTML = listData;
-}
+//     drug_list.innerHTML = listData;
+// }
 
 // modal
 
@@ -66,7 +66,7 @@ open.addEventListener('click', () => {
     count = 0;
     per = 0;
     progress.style.width = "0px"; // Reset progress bar width
-    loading = setInterval(animate, 50); // Start the animation
+    loading = setInterval(animate, 10); // Start the animation
 });
 
 close.addEventListener('click', () => {
@@ -92,11 +92,15 @@ var per = 0;   // Start at 0px
 
 // var loading = setInterval(animate, 50);
 
+const saveBtn = document.querySelector("#save");
+
 function animate() {
   if ((count == 100) & (per == 600)) {
     text.classList.remove("text-blink");
     loaderActive.classList.remove("active");
     tabActive.classList.add("active");
+    saveBtn.classList.add("active");
+    
   } else {
     text.classList.add("text-blink");
     per = per + 6;

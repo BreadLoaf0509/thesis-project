@@ -22,19 +22,20 @@
                 <li><a href="/html/guest/guest-about.html">About</a></li>
                 <li><a href="/guest-login">Login</a></li>
                 <li><a href="/guest-register">Register</a></li>
-              </ul>
+            </ul>
         </div>
     </nav>
+
+    <div class="message-container">
+        <div class="container">
+            <div class="server-message">SERVER MESSAGE WILL SHOW HERE</div>
+        </div>
+    </div>
 
     <section class="login">
         <div class="container">
             <form id="form" action="/">
-                <h1>Registration</h1>
-                <div class="input-control">
-                    <label for="username">Username</label>
-                    <input id="username" name="username" type="text" />
-                    <div class="error"></div>
-                </div>
+                <h1>User Login</h1>
                 <div class="input-control">
                     <label for="email">Email</label>
                     <input id="email" name="email" type="text" />
@@ -44,18 +45,24 @@
                     <label for="password1">Password</label>
                     <input id="password1" name="password1" type="password" />
                     <div class="error"></div>
+                    <div class="password">
+                        <label for="show-password1">Show Password</label>
+                        <input type="checkbox" id="show-password1" class="show-password" />
+                    </div>
+
+
+                    <div class="links">
+                        <a href="/guest-recovery">Forgot Password?</a>
+                        <a href="/guest-register">Create Account</a>
+                    </div>
                 </div>
-                <div class="input-control">
-                    <label for="password2">Confirm Password</label>
-                    <input id="password2" name="password2" type="password" />
-                    <div class="error"></div>
-                </div>
-                <a style="color: white; border: 2px solid black; padding: 5 px; background-color: blue;" href="/user-search">Sign Up</a>
-                <!-- <button type="submit">Sign Up</button> -->
-                
+                <button type="submit">Login</button>
+
+
             </form>
         </div>
     </section>
+
 
     <footer class="footer">
         <div class="container">
@@ -77,7 +84,7 @@
                         <li><a href="/html/guest/guest-about.html">About</a></li>
                         <li><a href="/guest-login">Login</a></li>
                         <li><a href="/guest-register">Register</a></li>
-                      </ul>
+                    </ul>
                 </div>
             </div>
 
@@ -106,16 +113,53 @@
 
     <script>
         const form = document.getElementById("form");
-        const username = document.getElementById("username");
         const email = document.getElementById("email");
         const password1 = document.getElementById("password1");
-        const password2 = document.getElementById("password2");
 
         form.addEventListener("submit", (e) => {
-            e.preventDefault();
+  e.preventDefault();
 
-            validateInputs();
+  validateInputs();
+
+  const errors = document.querySelectorAll(".error");
+  const hasErrors = Array.from(errors).some((error) => error.innerText !== "");
+
+  if (!hasErrors) {
+    const formData = new FormData(form);
+
+    fetch("/login", {
+      method: "POST",
+      body: formData,
+    })
+      .then(async (res) => {
+        const message = await res.text();
+        if (!res.ok) throw new Error(message);
+
+        showServerMessage(message); // ✅ success
+
+        setTimeout(() => {
+          window.location.href = "/user-extract";
+        }, 1500);
+      })
+      .catch((err) => {
+        showServerMessage(err.message, false); // ❌ error
+      });
+  }
+});
+
+
+
+
+        const toggle1 = document.getElementById("show-password1");
+
+        toggle1.addEventListener("click", () => {
+            if (toggle1.checked) {
+                password1.setAttribute("type", "text");
+            } else {
+                password1.setAttribute("type", "password");
+            }
         });
+
 
         const setError = (element, message) => {
             const inputControl = element.parentElement;
@@ -142,16 +186,10 @@
         };
 
         const validateInputs = () => {
-            const usernameValue = username.value.trim();
-            const emailValue = email.value.trim();
-            const password1Value = password.value.trim();
-            const password2Value = password2.value.trim();
 
-            if (usernameValue === "") {
-                setError(username, "Username is required");
-            } else {
-                setSuccess(username);
-            }
+            const emailValue = email.value.trim();
+            const password1Value = password1.value.trim();
+
 
             if (emailValue === "") {
                 setError(email, "Email is required");
@@ -162,21 +200,34 @@
             }
 
             if (password1Value === "") {
-                setError(password, "Password is required");
+                setError(password1, "Password is required");
             } else if (password1Value.length < 8) {
-                setError(password, "Password must be at least 8 character.");
+                setError(password1, "Password must be at least 8 character.");
             } else {
-                setSuccess(password);
-            }
-
-            if (password2Value === "") {
-                setError(password2, "Please confirm your password");
-            } else if (password2Value !== password1Value) {
-                setError(password2, "Passwords doesn't match");
-            } else {
-                setSuccess(password2);
+                setSuccess(password1);
             }
         };
+
+        
+        // server message
+
+        serverMessage = document.querySelector(".server-message");
+        serverMessageContainer = document.querySelector(".message-container .container");
+
+        function showServerMessage(message, isSuccess = true) {
+            serverMessage.innerHTML = message;
+            serverMessage.style.cssText = isSuccess
+                ? "background-color: #D4EDDA; color: #1B5E20;"
+                : "background-color: #F8D7DA; color: #B71C1C;";
+            serverMessage.classList.add("active");
+            serverMessageContainer.classList.add("active");
+
+            setTimeout(() => {
+                serverMessage.classList.remove("active");
+                serverMessageContainer.classList.remove("active");
+            }, 4000);
+        }
+
     </script>
 </body>
 

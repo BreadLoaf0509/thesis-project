@@ -1,20 +1,35 @@
-button {
+#close, #delete-save {
     padding: 10px;
-    width: 150px;
+    width: 90px;
     color: white;
-    /* font-family: inherit; */
     border-radius: 5px;
     cursor: pointer;
     border: 1px solid black;
     background-color: #0288D1;
-    /* box-shadow: 0px 2px 6px 0px rgba(0, 0, 0, 0.5); */
     font-size: 0.9rem;
+}
 
-    align-self: flex-end;
+#delete-save {
+    display: none;
+}
+
+#delete-save.show{
+    display: block;
 }
 
 
-/* tabs */
+.modal-buttons{
+    display: flex;
+    justify-content: space-between;
+}
+
+
+
+/* tabs 1*/
+
+.tabs{
+    margin: 50px 0;
+}
 
 .tabs .container{
     display: flex;
@@ -23,7 +38,7 @@ button {
 }
 
 .tab-container{
-    width: 100%;
+    width: 80%;
     background-color: #4FC3F7;
     padding: 30px;
     box-shadow: 0 2px 16px rgba(0, 0, 0, 0.1);
@@ -45,6 +60,7 @@ button {
     font-size: 18px;
     font-weight: 600;
     /* color: #919191; */
+    color: black;
     background: none;
     border: none;
     padding: 18px;
@@ -58,15 +74,21 @@ button {
 
 .content-box{
     padding: 20px;
+
 }
 
 .content-box .content{
     display: none;
     animation: moving 0.5s ease;
+    background-color: #B3E5FC;
+    padding: 25px;
+    border: 2px solid black;
 }
 
 .content-box .content.active{
-    display: block;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 @keyframes moving{
@@ -80,87 +102,252 @@ button {
 
 .line{
     position: absolute;
-    top: 62px;
-    left: 45px;
-    width: 189px;
+    top: 61px;
+    left: 0px;
+    width: 213px;
     height: 5px;
     background-color: white;
     border-radius: 10px;
     transition: all .3s ease;
 }
 
-/* forms */
+/* form */
 
-/* information */
-
-.content .information{
-    display: flex;
-    justify-content: center;
-    margin-top: 20px;
+form {
+    width: 500px;
+    padding: 20px;
+    /* background-color: whitesmoke; */
+    border-radius: 4px;
+    font-size: 12px;
 }
 
-.content .information form{
+form h1 {
+    color: #0f2027;
+    /* text-align: center; */
+    margin-bottom: 20px;
+}
+
+form button {
+    padding: 10px;
+    margin-top: 10px;
+    width: 100%;
+    color: white;
+    background-color: #0288D1;
+    border: none;
+    border-radius: 4px;
+}
+
+#show-save {
+    padding: 50px;
+    margin-top: 10px;
+    width: 100%;
+    color: white;
+    background-color: #0288D1;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.input-control {
     display: flex;
     flex-direction: column;
-    gap: 20px;
-    width: 80%;
 }
 
-.content .information form label{
-    width: 100px;
+.input-control input {
+    border: 2px solid #f0f0f0;
+	border-radius: 4px;
+	display: block;
+	font-size: 12px;
+	padding: 10px;
+	width: 100%;
 }
 
-.content .information form input{
-    width: 100%;
-    padding: 10px;
-    border-radius: 10px;
+.input-control input:focus {
+    outline: 0;
 }
 
-.information .input-group{
-    width: 100%;
-    display: flex;
-    gap: 10px;
-    align-items: center;
+.input-control.success input {
+    border-color: #09c372;
 }
 
-/* security */
+.input-control.error input {
+    border-color: #ff3860;
+}
 
-.content .security{
+.input-control .error {
+    color: #ff3860;
+    font-size: 9px;
+    height: 13px;
+}
+
+/* password */
+
+.password {
+    display: flex;  
+    gap: 8px; /* Add spacing between the checkbox and label */
+    justify-content: flex-end;
+}
+
+.password .show-password {
+    width: 13px;
+}
+
+.email-holder{
+    border: 2px solid black;
+    padding: 5px;
+    margin: 5px 0 20px 0;
+    background-color: white;;
+    
+}
+
+/* modal */
+
+/* modal */
+
+.modal-container {
+    background-color: rgba(0, 0, 0, 0.5);
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    width: 100vw;
+    opacity: 0;
+    pointer-events: none;
+
     display: flex;
     justify-content: center;
-    margin-top: 20px;
+    align-items: center;
+
+    transition: opacity 0.1s ease;
 }
 
-.content .security form{
+.modal-container.show {
+    pointer-events: auto;
+    opacity: 1;
+}
+
+.modal {
+    background-color: white;
+    border-radius: 25px;
+    padding: 30px;
+    width: 1100px;
+    height: 600px;
+    max-width: 100%;
+    text-align: justify;
+
     display: flex;
     flex-direction: column;
-    gap: 20px;
-    width: 80%;
+    justify-content: space-between;
 }
 
-.content .security form label{
-    width: 150px;
+.modal.empty{
+    width: 400px;
+    height: 200px;
+    text-align: center;
 }
 
-.content .security form input{
+.modal .empty{
+    height: 200px;
+}
+
+.modal #close {
+    align-self: flex-end;
+}
+
+/* tabs 2 */
+
+.tabs2 {
+    display: none;
+}
+
+.tabs2.show {
+    display: block;
+}
+
+.tabs2 .container {
+    display: flex;
+    /* justify-content: center;border: 2px solid red; */
+
+    padding: 0px;
+}
+
+.tab-container2 {
     width: 100%;
-    padding: 10px;
+    background-color: #4FC3F7;
+    padding: 10px 30px;
+    box-shadow: 0 2px 16px rgba(0, 0, 0, 0.1);
+    border-radius: 20px;
+}
+
+.tab-box2 {
+
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    /* border-bottom: 2px solid rgba(229, 229, 229); */
+    border-bottom: 2px solid black;
+    position: relative;
+}
+
+.tab-box2 .tab-btn2 {
+    font-size: 16px;
+    font-weight: 600;
+    color: black;
+    /* color: #919191; */
+    background: none;
+    border: none;
+    padding: 18px;
+    cursor: pointer;
+    width: 100%;
+}
+
+.tab-box2 .tab-btn2.active {
+    color: white;
+}
+
+.content-box2 {
+    padding: 20px;
+}
+
+.content-box2 .content2 {
+    display: none;
+    animation: moving 0.5s ease;
+    background-color: #B3E5FC;
+}
+
+.content-box2 .content2.active {
+    display: block;
+    overflow-y: auto;
+    height: 280px;
+    padding: 20px;
+    border: 2px solid black;
+
+}
+
+@keyframes moving {
+    from {
+        transform: translateX(50px);
+        opacity: 0;
+    }
+
+    to {
+        transform: translateX(0px);
+        opacity: 1;
+    }
+}
+
+.content-box2 .content2 h2 {
+    margin-bottom: 10px;
+}
+
+.line2 {
+    position: absolute;
+    top: 58px;
+    left: 0px;
+    width: 196px;
+    height: 5px;
+    background-color: white;
     border-radius: 10px;
+    transition: all .3s ease;
 }
-
-.security .input-group{
-    width: 100%;
-    display: flex;
-    gap: 10px;
-    align-items: center;
-}
-
-/* history */
-
-.history{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 70px;
-}
-

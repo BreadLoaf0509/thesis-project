@@ -1,0 +1,36 @@
+<div class="message-container">
+    <div class="container">
+      <div class="server-message">SERVER MESSAGE WILL SHOW HERE</div>
+    </div>
+</div>
+
+serverMessage = document.querySelector(".server-message");
+serverMessageContainer = document.querySelector(".message-container .container");
+serverMessageModal = document.querySelector(".server-message-modal");
+
+function showServerMessage(message, isSuccess = true) {
+      serverMessage.innerHTML = message;
+      serverMessage.style.cssText = isSuccess
+        ? "background-color: #D4EDDA; color: #1B5E20;"
+        : "background-color: #F8D7DA; color: #B71C1C;";
+      serverMessage.classList.add("active");
+      serverMessageContainer.classList.add("active");
+
+      setTimeout(() => {
+        serverMessage.classList.remove("active");
+        serverMessageContainer.classList.remove("active");
+      }, 4000);
+    }
+
+    function showServerMessageModal(message, isSuccess = true) {
+      serverMessageModal.innerHTML = message;
+      serverMessageModal.style.cssText = isSuccess
+        ? "background-color: #D4EDDA; color: #1B5E20;"
+        : "background-color: #F8D7DA; color: #B71C1C;";
+      serverMessageModal.classList.add("active");
+
+
+      setTimeout(() => {
+        serverMessageModal.classList.remove("active");
+      }, 4000);
+    }

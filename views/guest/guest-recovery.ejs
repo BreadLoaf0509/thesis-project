@@ -5,7 +5,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="/css/style.css" />
-    <link rel="stylesheet" href="/css/guest/guest-register.css" />
+    <link rel="stylesheet" href="/css/guest/guest-recovery.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
     <title>MedExtract</title>
 </head>
@@ -32,22 +32,38 @@
         </div>
     </div>
 
-    <section class="register">
+    <section class="form-group">
         <div class="container">
-            <form id="form" action="/register" method="POST">
-                <h1>Registration</h1>
-                <div class="input-control">
-                    <label for="username">Username</label>
-                    <input id="username" name="username" type="text" />
-                    <div class="error"></div>
-                </div>
+            <form id="recovery-form" class="show" action="/recovery-request">
+                <h1>Account Recovery</h1>
                 <div class="input-control">
                     <label for="email">Email</label>
                     <input id="email" name="email" type="text" />
                     <div class="error"></div>
                 </div>
+                <button type="submit">Send Recovery Code</button>
+            </form>
+
+            <form id="confirm-form" action="/recovery-verify">
+                <h1>Account Recovery</h1>
+                <p class="email-holder">Recovery Code sent to saki@gmail.com</p>
+
                 <div class="input-control">
-                    <label for="password1">Password</label>
+                    <label for="rcv-code">6-digit Recovery Code</label>
+                    <input id="rcv-code" name="rcv-code" type="text" />
+                    <div class="error"></div>
+                </div>
+                <div class="links">
+                    <a href="/guest-recovery">Change Email</a>
+                    <a id="resend" onclick="">Resend Recovery Code</a>
+                </div>
+                <button type="submit">Confirm Recovery Code</button>
+            </form>
+
+            <form id="change-form" action="/recovery-reset">
+                <h1>Account Recovery</h1>
+                <div class="input-control">
+                    <label for="password1">New Password</label>
                     <input id="password1" name="password1" type="password" />
                     <div class="error"></div>
                     <div class="password">
@@ -64,20 +80,14 @@
                         <input type="checkbox" id="show-password2" class="show-password" />
                     </div>
                 </div>
-                <button id="open" type="submit">Sign Up</button>
+                <div class="buttons">
+                    <button type="button" onclick="CancelChange();">Cancel</button>
+                    <button type="submit">Change Password</button>
+                </div>
+
             </form>
         </div>
     </section>
-
-    <!-- modal -->
-
-    <div id="modal_container" class="modal-container">
-        <div class="modal">
-            <h1 id="modal-title"></h1>
-
-            <button id="close">Close</button>
-        </div>
-    </div>
 
     <footer class="footer">
         <div class="container">
@@ -127,17 +137,17 @@
     </footer>
 
     <script>
-        const form = document.getElementById("form");
-        const username = document.getElementById("username");
+        const recovery_form = document.getElementById("recovery-form");
+        const confirm_form = document.getElementById("confirm-form");
+        const change_form = document.getElementById("change-form");
+
         const email = document.getElementById("email");
+        const rcv_code = document.getElementById("rcv-code");
         const password1 = document.getElementById("password1");
         const password2 = document.getElementById("password2");
 
         const toggle1 = document.getElementById("show-password1");
         const toggle2 = document.getElementById("show-password2");
-
-        serverMessage = document.querySelector(".server-message");
-serverMessageContainer = document.querySelector(".message-container .container");
 
         toggle1.addEventListener("click", () => {
             if (toggle1.checked) {
@@ -155,42 +165,100 @@ serverMessageContainer = document.querySelector(".message-container .container")
             }
         });
 
-        form.addEventListener("submit", (e) => {
-            e.preventDefault(); // Prevent the default form submission
-            validateInputs();
+        // 1️⃣ Send Recovery Code
+        recovery_form.addEventListener("submit", (e) => {
+            e.preventDefault();
+            validateEmail();
 
             const errors = document.querySelectorAll(".error");
             const hasErrors = Array.from(errors).some((error) => error.innerText !== "");
+            if (hasErrors) return;
 
-            if (!hasErrors) {
-                sendUserDataToServer(); // Submit the form if there are no errors
-            }
+            const formData = new FormData();
+            formData.append("email", email.value.trim());
+
+            fetch("/recovery-request", {
+                method: "POST",
+                body: formData
+            })
+                .then(async (res) => {
+                    const message = await res.text();
+                    if (!res.ok) throw new Error(message);
+
+                    // If success, move to next form
+                    recovery_form.classList.remove("show");
+                    confirm_form.classList.add("show");
+                    document.querySelector(".email-holder").textContent = `Recovery Code sent to ${email.value.trim()}`;
+                })
+                .catch((err) => {
+                    showServerMessage(err.message, false);
+                });
+
         });
 
-        function sendUserDataToServer() {
-            const formData = new FormData(form);
+        // 2️⃣ Verify Recovery Code
+        confirm_form.addEventListener("submit", (e) => {
+            e.preventDefault();
+            validateRecoveryCode();
 
-            fetch("/register", {
+            const errors = document.querySelectorAll(".error");
+            const hasErrors = Array.from(errors).some((error) => error.innerText !== "");
+            if (hasErrors) return;
+
+            const formData = new FormData();
+            formData.append("email", email.value.trim());
+            formData.append("code", rcv_code.value.trim());
+
+            fetch("/recovery-verify", {
                 method: "POST",
-                body: formData,
+                body: formData
             })
-                .then(async (response) => {
-                    const message = await response.text();
+                .then(async (res) => {
+                    const message = await res.text();
+                    if (!res.ok) throw new Error(message);
 
-                    if (!response.ok) {
-                        throw new Error(message); // Will go to catch
-                    }
+                    // If success, move to password change form
+                    confirm_form.classList.remove("show");
+                    change_form.classList.add("show");
+                })
+                .catch((err) => {
+                    showServerMessage(err.message, false);
+                });
 
-                    showServerMessage(message); // ✅ Show success message
+        });
+
+        // 3️⃣ Change Password
+        change_form.addEventListener("submit", (e) => {
+            e.preventDefault();
+            validatePassword();
+
+            const errors = document.querySelectorAll(".error");
+            const hasErrors = Array.from(errors).some((error) => error.innerText !== "");
+            if (hasErrors) return;
+
+            const formData = new FormData();
+            formData.append("password1", password1.value.trim());
+
+            fetch("/recovery-reset", {
+                method: "POST",
+                body: formData
+            })
+                .then(async (res) => {
+                    const message = await res.text();
+                    if (!res.ok) throw new Error(message);
+
+                    showServerMessage("Password changed successfully! Redirecting to login...");
 
                     setTimeout(() => {
                         window.location.href = "/guest-login";
                     }, 1500);
                 })
-                .catch((error) => {
-                    showServerMessage(error.message, false); // ❌ Show error message
+                .catch((err) => {
+                    showServerMessage(err.message, false);
                 });
-        }
+
+        });
+
 
 
         const setError = (element, message) => {
@@ -211,23 +279,20 @@ serverMessageContainer = document.querySelector(".message-container .container")
             inputControl.classList.remove("error");
         };
 
+        function CancelChange() {
+            change_form.classList.remove("show");
+            recovery_form.classList.add("show");
+        }
+
         const isValidEmail = (email) => {
             const re =
                 /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
             return re.test(String(email).toLowerCase());
         };
 
-        const validateInputs = () => {
-            const usernameValue = username.value.trim();
-            const emailValue = email.value.trim();
-            const password1Value = password1.value.trim();
-            const password2Value = password2.value.trim();
+        const validateEmail = () => {
 
-            if (usernameValue === "") {
-                setError(username, "Username is required");
-            } else {
-                setSuccess(username);
-            }
+            const emailValue = email.value.trim();
 
             if (emailValue === "") {
                 setError(email, "Email is required");
@@ -236,6 +301,25 @@ serverMessageContainer = document.querySelector(".message-container .container")
             } else {
                 setSuccess(email);
             }
+
+        };
+
+        const validateRecoveryCode = () => {
+
+            const rcvCodeValue = rcv_code.value.trim();
+
+            if (rcvCodeValue === "") {
+                setError(rcv_code, "Recovery code is required");
+            } else {
+                setSuccess(rcv_code);
+            }
+
+        };
+
+        const validatePassword = () => {
+
+            const password1Value = password1.value.trim();
+            const password2Value = password2.value.trim();
 
             if (password1Value === "") {
                 setError(password1, "Password is required");
@@ -252,24 +336,25 @@ serverMessageContainer = document.querySelector(".message-container .container")
             } else {
                 setSuccess(password2);
             }
+
         };
 
-
+        serverMessage = document.querySelector(".server-message");
+        serverMessageContainer = document.querySelector(".message-container .container");
 
         function showServerMessage(message, isSuccess = true) {
-      serverMessage.innerHTML = message;
-      serverMessage.style.cssText = isSuccess
-        ? "background-color: #D4EDDA; color: #1B5E20;"
-        : "background-color: #F8D7DA; color: #B71C1C;";
-      serverMessage.classList.add("active");
-      serverMessageContainer.classList.add("active");
+            serverMessage.innerHTML = message;
+            serverMessage.style.cssText = isSuccess
+                ? "background-color: #D4EDDA; color: #1B5E20;"
+                : "background-color: #F8D7DA; color: #B71C1C;";
+            serverMessage.classList.add("active");
+            serverMessageContainer.classList.add("active");
 
-      setTimeout(() => {
-        serverMessage.classList.remove("active");
-        serverMessageContainer.classList.remove("active");
-      }, 4000);
-    }
-
+            setTimeout(() => {
+                serverMessage.classList.remove("active");
+                serverMessageContainer.classList.remove("active");
+            }, 4000);
+        }
     </script>
 </body>
 
